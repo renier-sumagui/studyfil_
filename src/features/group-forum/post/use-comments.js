@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { getTimePassed } from 'features/group-forum';
 
 async function useComments(postId) {
-    const response = await Axios.get(`http://localhost:8000/comments/post/${postId}`);
+    const response = await Axios.get(`https://studyfil-api.onrender.com/comments/post/${postId}`);
     if (response.data.hasComments) {
         const comments = response.data.comments.map((comment) => {
             return { 
