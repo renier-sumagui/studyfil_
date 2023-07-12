@@ -17,7 +17,8 @@ export function AuthHero() {
         >
             <img src="img/logo2.png" />
             <img src="img/friends.png" />
-            <Typography variant="h4" color="#00007D" sx={{ textAlign: "center", width: '70%' }}>An online learning community that offers sharing and gaining knowledge on different topic.</Typography>
+            <Typography variant="h5" color="#00007D" sx={{ textAlign: "center", width: '70%' }}>An online learning community that offers sharing and gaining knowledge on different topic.</Typography>
+            <Typography variant="p" color="#00007D" sx={{ textAlign: "center", width: '70%' }}>Recommended for users 16 years old and above.</Typography>
       </Grid>
     )
 }
