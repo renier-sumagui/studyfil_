@@ -8,7 +8,7 @@ function ConfirmLeaveModal({ modalRef, closeModal, groupId, userId }) {
     const navigate = useNavigate();
     
     async function handleLeave() {
-        await Axios.post('http://localhost:8000/groups/leave', { userId, groupId }, { withCredentials: true });
+        await Axios.post('https://studyfil-api.onrender.com/groups/leave', { userId, groupId }, { withCredentials: true });
         navigate('/groups/joined');
     }
 

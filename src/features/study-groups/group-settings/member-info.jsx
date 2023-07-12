@@ -10,14 +10,14 @@ function KickBtn({ userId, username, groupId, setSeed }) {
     const [reports, setReports] = useState();
 
     async function handleKick() {
-        const response = await Axios.delete(`http://localhost:8000/groups/${groupId}/member/${userId}`);
+        const response = await Axios.delete(`https://studyfil-api.onrender.com/groups/${groupId}/member/${userId}`);
         setSeed(Math.random());
         modalRef.current.close();
     }
 
     useEffect(() => {
         (async function() {
-            const response = await Axios.get(`http://localhost:8000/groups/${groupId}/memberreports/${userId}`)
+            const response = await Axios.get(`https://studyfil-api.onrender.com/groups/${groupId}/memberreports/${userId}`)
             setReports(response.data.reports);
         })();
     }, [])
@@ -42,7 +42,7 @@ function ReportBtn({ userId, username, groupId, setSeed }) {
     const { user } = useUserContext();
 
     async function handleReport() {
-        const response = await Axios.post('http://localhost:8000/groups/reportmember', { userId, groupId, reporterId: user.id }, { withCredentials: true });
+        const response = await Axios.post('https://studyfil-api.onrender.com/groups/reportmember', { userId, groupId, reporterId: user.id }, { withCredentials: true });
         setSeed(Math.random());
         modalRef.current.close();
     }

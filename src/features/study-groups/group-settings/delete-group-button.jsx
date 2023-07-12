@@ -7,7 +7,7 @@ function ConfirmDeleteModal({ modalRef, closeModal, groupId }) {
     const navigate = useNavigate();
     
     async function handleDelete() {
-        await Axios.delete(`http://localhost:8000/groups/delete/${groupId}`);
+        await Axios.delete(`https://studyfil-api.onrender.com/groups/delete/${groupId}`);
         navigate('/groups/joined');
     }
 
