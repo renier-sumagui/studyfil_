@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 async function profanityFilter(string) {
     const reEscape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    const response = await Axios.get('http://localhost:8000/messages/words/inappropriate');
+    const response = await Axios.get('https://studyfil-api.onrender.com/messages/words/inappropriate');
     // Define the list of bad words
     const badWords = response.data.words;
 

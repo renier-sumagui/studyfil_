@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'; 
 
-const URL = 'http://localhost:8000';
+const URL = 'https://studyfil-api.onrender.com';
 
 
 export const socket = io(URL);
