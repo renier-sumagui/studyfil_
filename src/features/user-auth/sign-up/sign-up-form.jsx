@@ -206,7 +206,7 @@ export function SignUpForm() {
                     control={<Checkbox size="small" name="terms" value="agree" />}
                     label={
                     <span style={{ fontSize: '14px' }}>
-                        I agree with StudyFil's <Link style={{ color: '#1999E3', fontSize: '14px' }} to="/legal/terms" target="_blank">Terms and Conditions</Link>
+                        I agree with StudyFil's <Link style={{ color: '#1999E3', fontSize: '14px' }} to="/legal/terms" >Terms and Conditions</Link>
                     </span>
                     }
                 />
