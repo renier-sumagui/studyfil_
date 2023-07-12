@@ -1,0 +1,134 @@
+@import 'stylesheets/colors.css';
+.shadow {
+    box-shadow: var(--shadow);
+}
+.searchInput {
+    font-size: 18px;
+}
+.settings {
+    background: #E3F4FE;
+    display: grid;
+    grid-template-columns: 250px calc(100% - 250px);
+    height: 100%;
+    outline: 1px solid var(--primary-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.saveButton, .deleteAccBtn {
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 18px;
+}
+.deleteAccBtn { background: var(--danger); }
+.deleteAccBtn:hover { background: var(--danger-hover); }
+
+/* ------------------------------------------ SETTINGS SIDEBAR ------------------------------------------ */
+.settingsSidebar {
+    background: var(--lighter-gray);
+    overflow-x: hidden;
+    padding: 0 5px;
+}
+.settingsSidebar > ul > li {
+    margin: 2px 0 2px 0;
+}
+.settingsSidebar > ul > li > a {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background 200ms;
+}
+.settingsSidebar > ul > li > a:hover {
+    background: var(--gray);
+}
+
+/* ------------------------------------------ TOPIC CARD ------------------------------------------ */
+.topicCard {
+    background: var(--primary-color);
+    border-radius: 10px;
+    border: 1px solid var(--blue);
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px 5px 0;
+}
+.topicCard * {
+    vertical-align: middle;
+}
+.topicCard button {
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+.topicCard button:hover {
+    background: var(--light-blue)
+}
+.removeIcon:hover {
+    color: white;
+}
+
+/* ------------------------------------------ TOPICS FORM ------------------------------------------ */
+.topicsForm {
+    position: relative;
+    height: 100%;
+}
+/* ------------------------------------------ TOPIC PREDICTION CONTAINER ------------------------------------------ */
+.searchContainer {
+    display: flex;
+    position: relative;
+}
+.searchInput {
+    padding: 5px 10px;
+    display: inline-block;
+}
+.topicsContainer {
+    overflow: auto;
+    background: white;
+    max-height: 300px;
+    position: absolute;
+    width: 94.7%;
+    border-radius: 5px;
+}
+.topicsContainer p {
+    border-bottom: 1px solid var(--light-gray);
+    cursor: pointer;
+    padding: 3px 5px;
+}
+.topicsContainer p:hover {
+    background: var(--light-gray);
+}
+/* ------------------------------------------ INTERESTED TOPICS CONTAINER ------------------------------------------ */
+.interestedTopicsContainer {
+    margin-top: 10px;
+}
+.saveButton {
+    background: var(--blue);
+}
+.saveButton:hover {
+    background: var(--light-blue);
+}
+/* ------------------------------------------ ACCOUNT AND PASSWORD ------------------------------------------ */
+.accountAndPassword {
+    padding: 5px;
+}
+.accountAndPassword label {
+    color: gray;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+.accountAndPassword input, .accountAndPassword select {
+    font-size: 18px;
+}
+.accountAndPassword input[type="submit"] {
+    margin-top: 5px;
+}
+.error {
+    color: var(--danger);
+    font-size: 14px;
+}

@@ -1,0 +1,78 @@
+@import 'stylesheets/colors.css';
+
+.aboutUse, .teamSection {
+    width: 100%;
+}
+.aboutUs {
+    height: 100%;
+    border: 5px solid black;
+    overflow: auto;
+    background: var(--primary-color);
+}
+.aboutUsSection, .aboutUsContainer {
+    margin: 0 auto;
+}
+.aboutUsSection {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.aboutUsContainer, .teamTitleContainer {
+    width: 900px;
+}
+.title {
+    font-size: 3em;
+    border-bottom: 5px solid black;
+    display: table;
+    padding-right: 20px;
+}
+.title, .paragraph {
+    margin-bottom: 20px !important;
+}
+.paragraph {
+    word-spacing: 3px;
+}
+.aboutUsLink {
+    color: var(--blue);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+}
+.aboutUsLink:hover {
+    text-decoration: underline;
+}
+/* ----------------------------------------------------------- PROFILE -----------------------------------------------------------*/
+.teamSection, .profile {
+    padding: 20px;
+}
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background: var(--blue);
+    border-radius: 20px;
+}
+.profileImage {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+.profileDescription * {
+    text-align: center;
+    color: var(--lighter-gray);
+}
+.profileDescription p:first-child {
+    font-size: 2em;
+}
+.profileDescription p:last-child, .aboutUsLink {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.line {
+    stroke-width: 15px;
+    stroke: var(--blue);
+}
+.svg {
+    margin-bottom: -10px;
+}

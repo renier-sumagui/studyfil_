@@ -1,0 +1,114 @@
+@import 'stylesheets/colors.css';
+
+/* ------------------------------ STUDY GROUPS ------------------------------ */
+.studyGroups {
+    min-width: 100%;
+    margin-bottom: 20px;
+}
+/* ------------------------------ GROUPS CONTAINER ------------------------------ */
+.groupsContainer {
+    margin: 10px 0 0 10px;
+    gap: 10px;
+}
+/* ------------------------------ CREATE GROUP BUTTON ------------------------------ */
+.createGroupBtn {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: var(--blue);
+    box-shadow: var(--blue-shadow);
+}
+.createGroupBtn:hover {
+    background: var(--light-blue);
+}
+/* ------------------------------ CREATE GROUP BUTTON ICON ------------------------------ */
+.createGroupBtn > i {
+    font-size: 30px;
+    color: white;
+
+}
+/* ------------------------------ CREATE GROUP MODAL ------------------------------ */
+dialog::backdrop {
+    background:rgba(0, 0, 0, 0.3);
+}
+.modal {
+    border: none;
+    padding: 0;
+    width: 800px;
+    border-radius: 10px;
+}
+.modalHeading {
+    color: white;
+    background: var(--blue);
+    padding: 10px;
+}
+/* ------------------------------ CREATE GROUP FORM ------------------------------ */
+.createGroupForm {
+    padding: 10px;
+}
+.createGroupForm * {
+    border-radius: 5px;
+}
+.createGroupForm > label, .createGroupForm > label > input, .createGroupForm select {
+    display: block;
+}
+.createGroupForm > label {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.createGroupForm > label > input, .createGroupForm select {
+    font-size: 18px;
+}
+.createGroupForm > label > input {
+    width: 100%;
+    border: 1px solid var(--blue);
+    padding: 5px;
+    margin-top: 2px;
+}
+.createGroupForm > label > input:focus, .createGroupForm select:focus {
+    outline: 2px solid var(--blue);
+}
+.createBtn, .cancelBtn, .createGroupBtn, .createGroupForm label {
+        cursor: pointer;
+}
+.createBtn, .cancelBtn {
+    border: none;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+.createBtn:hover, .cancelBtn:hover {
+    box-shadow: var(--shadow);
+}
+.createBtn {
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    background: var(--primary-color);
+}
+.cancelBtn {
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    background: var(--light-red);
+}
+.createGroupForm select, label > input[type="number"] {
+    border: none;
+    outline: 1px solid var(--blue);
+    margin: 2px 0 15px 0;
+    width: 50px;
+}
+.searchTopics {
+    position: relative;
+
+}
+.suggestedTopic {
+    background: var(--light-gray);
+    font-weight: 500;
+    padding: 5px 10px;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+}

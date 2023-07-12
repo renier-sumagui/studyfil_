@@ -1,0 +1,18 @@
+@import 'stylesheets/colors.css';
+
+.mainSection {
+    width: calc(100% - 280px);
+    height: 100%;
+    margin-left: 280px;
+    overflow: auto;
+    padding: 10px;
+    position: relative;
+}
+.mainSection::-webkit-scrollbar {
+    background: none;
+    width: 10px;
+}
+.mainSection::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 10px;
+}

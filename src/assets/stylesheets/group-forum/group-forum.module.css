@@ -1,0 +1,296 @@
+@import 'stylesheets/colors.css';
+@import 'stylesheets/settings/settings.module.css';
+
+.postQuestion, .postCard, .modalExitBtn, .question {
+    margin-bottom: 10px;
+}
+.pointerCursor, .postQuestion, .postCard {
+    cursor: pointer;
+}
+.settingsBtn, .modalExitBtn, .cancelPostBtn, .submitPostBtn, .arrows button {
+    transition: background 200ms;
+}
+.wrapper, .dangerBtn, .reportCount {
+    padding: 5px 20px;
+}
+.wrapper, .postQuestion { 
+    border-radius: 30px;
+    border: 2px solid var(--gray);
+}
+.avatar, .settingsBtn {
+    width: 40px;
+    height: 40px;
+}
+.avatar, .settingsBtn, .modalExitBtn, .postOptionBtn, .timePosted::before {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.avatar, .reportCount { margin-right: 10px; }
+.avatar, .submitPostBtn {
+    background: var(--primary-color);
+}
+.avatar, .centerContent, .settingsBtn, .postQuestionForm, .arrows button {
+    display: flex;
+}
+.avatar, .centerContent {
+    justify-content: center;
+    align-items: center;
+}
+.avatar, .postUserInfo > p, .timePosted, .upvoteDownvote button, .upvoteDownvote button,
+.groupInformation, .dangerBtn, .dangerBtn, .reportCount {
+    font-weight: 500;
+}
+.avatar {
+    border: 1px solid var(--blue);
+    font-size: 0.8em;
+}
+.centerContent, .arrows {
+    overflow: hidden;
+}
+.groupForum {
+    height: 100%;
+}
+.groupForum h1, .groupForumTitle {
+    margin: 0;
+}
+.settingsBtn, .leaveBtn, .deleteBtn, .modalExitBtn, .cancelPostBtn, .postOptionBtn { 
+    background: none;
+}
+.settingsBtn, .leaveBtn, .deleteBtn, .dialog, .modalExitBtn, .cancelPostBtn, .submitPostBtn, .arrows button {
+    border: none;
+}
+.settingsBtn:hover, .postQuestion:hover, .modalExitBtn:hover, .cancelPostBtn:hover {
+    background: var(--lighter-gray);
+}
+.leaveBtn, .deleteBtn, .cancelPostBtn, .submitPostBtn, .resolved {
+    font-weight: bold;
+}
+.leaveBtn, .deleteBtn, .dialog, .resolved {
+    border-radius: 10px;
+}
+.leaveBtn, .deleteBtn, .resolved, .upvoteDownvote svg {
+    font-size: 16px;
+}
+.settingsBtn, .modalExitBtn, .postOptionBtn {
+    padding: 0;
+}
+.questionContent, .questionContent, .postOptionBtn, .arrows {
+    border: 1px solid var(--gray);
+}
+/* -------------------------------- FORUM HEADER -------------------------------- */
+.forumHeader {
+    padding-bottom: 15px;
+    margin: 0 0 5px 0;
+}
+.settingsBtn {
+    composes: centerContent pointerCursor;
+}
+.settingsBtn > svg {
+    font-size: 30px;
+}
+.leaveBtn, .deleteBtn {
+    color: var(--gray);
+    align-self: center;
+    padding: 3px 10px;
+    transition: all 100ms;
+}
+.leaveBtn:hover, .deleteBtn:hover {
+    background: var(--danger);
+    color: white;
+}
+/* -------------------------------- POST QUESTION -------------------------------- */
+.postQuestion, .questionContent, .commentForm {
+    width: 100%;
+}
+/* -------------------------------- POST MODAL -------------------------------- */
+.dialog {
+    height: 500px;
+    width: 800px;
+    padding: 10px;
+
+}
+.dialog::backdrop {
+    background:rgba(0, 0, 0, 0.3);
+}
+.modalExitBtn {
+    height: 30px;
+    width: 30px;
+    composes: pointerCursor;
+}
+.modalExitBtn > i {
+    font-size: 20px;
+}
+/* -------------------------------- POST QUESTION FORM -------------------------------- */
+.postQuestionForm {
+    height: 90%;
+    flex-direction: column;
+}
+.questionContent {
+    height: 90%;
+    resize: none;
+    margin: 0 0 10px 0;
+    outline: none;
+}
+.formBtns {
+    align-self: flex-end;
+}
+.cancelPostBtn, .submitPostBtn {
+    border-radius: 15px;
+    padding: 8px;
+}
+.cancelPostBtn {
+    margin-right: 5px;
+}
+.submitPostBtn {
+    height: moz-fit-content;
+    height: fit-content;
+}
+.submitPostBtn:hover {
+    background: #bddcfa;
+}
+/* -------------------------------- POST -------------------------------- */
+.postCard {
+    transition: transform 200ms;
+    display: block;
+    position: relative;
+}
+.postCard:hover {
+    transform: translateY(-3px);
+}
+.postHeader > * {
+    vertical-align: top;
+}
+.postUserInfo {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.postUserInfo > p, .timePosted {
+    font-size: 15px;
+}
+.question {
+    padding-bottom: 10px;
+}
+.timePosted {
+    color: var(--dark-gray);
+}
+.timePosted::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+    background-color: gray;
+}
+.resolved {
+    color: var(--light-gray);
+    background: var(--success);
+    height: moz-fit-content;
+    height: fit-content;
+    padding: 2px 12px;
+}
+.resolvedCard {
+    border: 2px solid var(--success);
+    background: var(--light-success);
+}
+.postOptionContainer {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.postOptionBtn {
+    padding: 5px;
+}
+.postOptionBtn:hover {
+    background: var(--light-gray)
+}
+.resolvedPostOptionBtn {
+    composes: postOptionBtn;
+    border: 1px solid var(--success);
+    background: var(--light-success);
+}
+.resolvedPostOptionBtn:hover {
+    background: var(--success);
+    border: 1px solid var(--light-success);
+}
+.postOptionDialog {
+    position: absolute;
+    right: 0;
+
+}
+/* -------------------------------- COMMENT -------------------------------- */
+.comment {
+    border-top: 2px solid var(--gray);
+    padding: 20px 0 10px 0;
+    margin:  10px 0 0 0;
+}
+.commentHeader {
+
+}
+/* -------------------------------- COMMENT FORM -------------------------------- */
+.commentForm {
+    display: grid;
+    grid-template-columns: 45px 11fr 1fr;
+    grid-template-rows: 1;
+    column-gap: 5px;
+    margin: 10px 0 0 0;
+}
+.commentInput {
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow-y: auto;
+    resize: none;
+    outline: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/* -------------------------------- COMMENT -------------------------------- */
+.reply {
+    margin-left: 50px;
+    composes: comment;
+    padding: 10px 0 0 0;
+}
+/* -------------------------------- UPVOTE DOWNVOTE -------------------------------- */
+.upvoteDownvote {
+    margin: 10px 0 0 0;
+    gap: 5px;
+}
+.arrows {
+    border-radius: 20px;
+}
+.arrows button {
+    align-items: center;
+}
+.arrows button:hover {
+    background: var(--light-gray);
+}
+.upvoteDownvote button, .upvoteDownvote button {
+    font-size: 14px;
+}
+/* -------------------------------- GROUP  -------------------------------- */
+.groupInformation {
+    border-bottom: var(--gray-border);
+    border-top: var(--gray-border);
+    padding: 5px 0 10px 0;
+}
+.groupInformation > p > span:first-child * {
+    vertical-align: bottom;
+}
+/* -------------------------------- MEMBER INFO -------------------------------- */
+.memberInfo {
+    margin-top: 10px;
+}
+.dangerBtn {
+    composes: deleteAccBtn;
+    height: fit-content;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+}
+.reportCount {
+    background: var(--gray);
+    display: inline-block;
+}
+.dangerBtn, .reportCount {
+    font-size: 14px;
+    border-radius: 20px;
+}

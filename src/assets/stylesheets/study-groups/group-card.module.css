@@ -1,0 +1,53 @@
+@import 'stylesheets/colors.css';
+
+.boxShadow {
+    box-shadow: 3px 3px 5px 0px rgba(209, 209, 209);
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 45%;
+    display: inline-block;
+}
+.groupCard {
+    height: 125px;
+    width: 250px;
+    padding: 10px;
+    border: 1px solid var(--blue);
+    position: relative;
+    border-radius: 10px;
+    background: var(--primary-color);
+    composes: boxShadow;
+}
+.groupCard > * {
+    margin-bottom: 5px;
+}
+.groupCard > h4 {
+    border-top: 1px solid var(--light-blue);
+    margin-top: 5px !important;
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis;  
+    max-width: 100%;
+}
+.viewBtn > a {
+    color: white;
+    font-size: 14px;
+}
+.joinBtn, .viewBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 20px;
+    border: none;
+    background: var(--blue);
+    color: white;
+    padding: 5px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.joinBtn:hover, .viewBtn:hover {
+    background: var(--light-blue);
+}

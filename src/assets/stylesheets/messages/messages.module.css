@@ -1,0 +1,164 @@
+@import 'stylesheets/colors.css';
+
+.fixedPosition {
+    position: fixed;
+}
+
+.messages, .messageSidebar, .messageMain {
+    height: 100%;
+}
+.messages, .messageMain, .messageHeader, .messagesContainer, .messageForm {
+    width: 100%;
+}
+.messageSidebar, .messagesContainer {
+    overflow: auto;
+}
+.messages, .messageForm, .messageActions {
+    display: flex;
+}
+/* ----------------------- Message Component Container ----------------------- */
+.messages {
+    outline: 1px solid var(--primary-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+/* ----------------------- Message Sidebar ----------------------- */
+.messageSidebar {
+    width: 300px;
+    background: var(--lighter-gray);
+    overflow-x: hidden;
+    padding: 0 5px;
+}
+.messageSidebar > ul > li {
+    margin: 2px 0 2px 0;
+}
+.messageSidebar > ul > li > a {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background 200ms;
+}
+.messageSidebar > ul > li > a:hover {
+    background: var(--gray);
+}
+.messageSidebarHeading {
+    padding: 5px 0;
+    border-bottom: 1px solid gray;
+    margin-bottom: 5px;
+}
+.navlink {
+    color: white;
+}
+/* ----------------------- Group Tab ----------------------- */
+.groupTab {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+}
+/* ----------------------- Messages Section Container ----------------------- */
+.messageMain {
+    position: relative;
+}
+/* ----------------------- Messages Section Header ----------------------- */
+.messageHeader {
+    height: 40px;
+    background: rgba(0, 0, 255, 0.4);
+    padding: 0 10px;
+}
+.groupInfo {
+    height: 80%;
+}
+.groupImg {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+}
+.groupName {
+    display: inline-block;
+    font-weight: bold;
+}
+/* ----------------------- Message Actions ----------------------- */
+.messageActions {
+    gap: 10px;
+}
+.messageActions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 6px;
+    transition: background 200ms;
+}
+.messageActions button:hover {
+    background: var(--primary-color);
+}
+.actionIcon {
+    display: inline-block;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+/* ----------------------- Messages Container ----------------------- */
+.messagesContainer {
+    position: absolute;
+    bottom: 40px;
+    top: 40px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+}
+/* ----------------------- Message Box ----------------------- */
+.messageBox {
+    /* margin-bottom: 10px; */
+}
+.userInfoContainer {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-bottom: 2px;
+}
+.userImg {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hiddne;
+    font-weight: 500;
+    font-size: 11px;
+}
+.userName {
+    font-size: 14px;
+}
+.messageContent {
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 600px;
+    margin: 0 0 1px 0;
+    padding: 5px;
+    background: var(--light-gray);
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+.currentUser {
+    /* margin: 10px 0; */
+    align-self: flex-end;
+    composes: messageContent;
+}
+/* ----------------------- Message Form ----------------------- */
+.messageForm {
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    background: cornflowerblue;
+    padding: 5px;
+    justify-content: center;
+}
+.messageInput {
+    width: 80%;
+    font-size: 18px;
+}

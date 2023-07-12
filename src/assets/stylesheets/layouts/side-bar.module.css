@@ -1,0 +1,10 @@
+@import 'stylesheets/colors.css';
+
+.sidebar {
+    width: 280px;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    padding: 20px 10px;
+    background: var(--lighter-gray);
+}
