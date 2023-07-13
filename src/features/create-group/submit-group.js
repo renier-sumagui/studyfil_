@@ -1,8 +1,8 @@
 import Axios from 'axios';
 
 async function submitGroup(userId, groupName, topicId, memberCount) {
-    console.log(userId, groupName, topicId, memberCount);
-    const response = await Axios.post('https://studyfil-api.onrender.com/groups/add', { userId, groupName, topicId, memberCount }, { withCredentials: true });
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const response = await Axios.post('https://studyfil-api.onrender.com/groups/add', { userId, groupName, topicId, memberCount, timezone }, { withCredentials: true });
     return response.data.success;
 }
 

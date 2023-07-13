@@ -5,12 +5,14 @@ import submitQuestionForm from './submit-question-form.js';
 import { useUserContext } from 'context/';
 import { profanityFilter } from 'src/utils/';
 import { BadWordsAlert } from 'features/alerts/';
+import { AbsoluteCircular } from 'features/loading';
 
 export function PostQuestionForm({ handleClose }) {
     const { group } = useGroupContext();
     const { user } = useUserContext();
     const [question, setQuestion] = useState('');
     const [alert, setAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -23,7 +25,9 @@ export function PostQuestionForm({ handleClose }) {
             setTimeout(() => setAlert(false), 2000);
             return;
         } else {
+            setLoading(true);
             const result = await submitQuestionForm(user.id, group.id, question);
+            setLoading(false);
             setQuestion('');
             handleClose(e);
         }
@@ -31,6 +35,7 @@ export function PostQuestionForm({ handleClose }) {
 
     return (
         <form className={GroupForumCss.postQuestionForm} onSubmit={handleSubmit}>
+            {loading && <AbsoluteCircular />}
             {alert && <BadWordsAlert />}
             <textarea 
                 value={question} 

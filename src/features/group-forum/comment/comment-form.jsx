@@ -3,19 +3,22 @@ import { useEffect, useState, useRef } from 'react';
 import { submitComment } from './submit-comment.js';
 import { useUserContext } from 'context/';
 import { profanityFilter,getNameInitials } from 'src/utils/';
+import { AbsoluteCircular } from 'features/loading';
 
 export function CommentForm({ postId, setSeed, groupId }) {
     const commentRef = useRef(null);
     const [comment, setComment] = useState('');
     const { user } = useUserContext();
     const [initials, setInitials] = useState();
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
 
         const filteredComment = await profanityFilter(comment);
-
+        setLoading(true);
         await submitComment(user.id, postId, filteredComment, groupId);
+        setLoading(false);
         setComment('');
         setSeed(Math.random());
     }
@@ -31,7 +34,8 @@ export function CommentForm({ postId, setSeed, groupId }) {
     }, [])
 
     return (
-        <form className={GroupForumCss.commentForm} onSubmit={handleSubmit}>
+        <form className={GroupForumCss.commentForm} onSubmit={handleSubmit} style={{ position: 'relative' }}>
+            {loading && <AbsoluteCircular />}
             <div className={GroupForumCss.avatar}>{initials}</div>
             <textarea 
                 ref={commentRef} 
