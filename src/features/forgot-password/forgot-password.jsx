@@ -51,7 +51,7 @@ function PinForm({ setIsPin }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await Axios.post('http://localhost:8000/user/verifyresetcode', { code }, { withCredentials: true });
+        const response = await Axios.post('https://studyfil-api.onrender.com/user/verifyresetcode', { code }, { withCredentials: true });
         if (response.data.success) {
             setCode('');
             setIsPin(false);
