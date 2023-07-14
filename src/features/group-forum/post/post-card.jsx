@@ -7,6 +7,7 @@ import { useUserContext } from 'context/';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { submitResolve } from './submit-resolve';
 import { getNameInitials } from 'src/utils';
+import Axios from 'axios';
 
 function PostOptionButton({ isResolved, postId, setSeed }) {
     const [modal, setModal] = useState(false);
