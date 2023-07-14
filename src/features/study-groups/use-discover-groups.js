@@ -8,7 +8,6 @@ async function useDiscoverGroups(userId) {
     let groups = [];
     const recommendations = tempResponse.data.recommendedStudyGroups;
 
-    console.log(recommendations);
     for (const key in recommendations) {
         recommendations[key].map((group) => groups.push(group));
     }

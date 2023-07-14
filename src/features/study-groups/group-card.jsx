@@ -24,6 +24,7 @@ export function GroupCard({ groupId, groupName, topic, owner, memberLimit, membe
             {loading && <AbsoluteCircular />}
             <h3>{groupName}</h3>
             <h4>Topic: {topic}</h4>
+            <p className="fontSizeSmall">Type: <span className={classnames(GroupCardCss.ellipsis, 'verticalAlignBaseline fontSizeSmall')}>{isAcademic ? 'Academic' : 'Non-academic'}</span></p>
             <p className="fontSizeSmall">Owner: <span className={classnames(GroupCardCss.ellipsis, 'verticalAlignBaseline fontSizeSmall')}>{owner}</span></p>
             <p className="fontSizeSmall"><GroupIcon fontSize='small'  sx={{ verticalAlign: 'bottom' }} /> {memberCount}/{memberLimit}</p>
             <button className={GroupCardCss.joinBtn} onClick={handleJoin}>Join Group</button>

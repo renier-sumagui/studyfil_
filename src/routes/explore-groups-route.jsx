@@ -20,14 +20,12 @@ function ExploreGroupsRoute() {
             if (groups.length > 0) {
                 setBasedOnUsers(groups);
             }
-            console.log('based on related users:', groups);
         })();
         (async function() {
             const groups = await useGroupsBasedOnTopics(user.id);
             if (groups.length > 0) {
                 setBasedOnTopics(groups);
             }
-            console.log('based on topics:', groups)
         })();
     }, [seed])
 

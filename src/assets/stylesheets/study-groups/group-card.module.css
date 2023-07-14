@@ -11,8 +11,8 @@
     display: inline-block;
 }
 .groupCard {
-    height: 125px;
-    width: 250px;
+    height: 135px;
+    width: 30%;
     padding: 10px;
     border: 1px solid var(--blue);
     position: relative;
@@ -20,8 +20,11 @@
     background: var(--primary-color);
     composes: boxShadow;
 }
-.groupCard > * {
+.groupCard > *:not(p) {
     margin-bottom: 5px;
+}
+.groupCard > p {
+    font-weight: 500;
 }
 .groupCard > h3 {
     white-space: nowrap;

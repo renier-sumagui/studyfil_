@@ -22,7 +22,7 @@ export function DisplayProfile() {
                 'flexDirectionColumn'
         )}>
             <div className={DisplayProfileCss.profileImage}>{initials}</div>
-            <a href="#" className={DisplayProfileCss.profileName}>{user.username}</a>
+            <p className={DisplayProfileCss.profileName}>{user.username}</p>
         </div>
     )
 }

@@ -14,6 +14,7 @@ import { getTimePassed } from 'src/utils';
 import { LeaveGroupButton } from './leave-group-button.jsx';
 import { DeleteGroupButton } from './delete-group-button.jsx';
 import { useUserContext } from 'context/';
+import TopicIcon from '@mui/icons-material/Topic';
 
 export function GroupSettings() {
     const navigate = useNavigate();
@@ -45,6 +46,7 @@ export function GroupSettings() {
                         <h2>Group Information</h2>
                         <p><span><PersonIcon /> Group Owner:</span> <span>{group.admin_username}</span></p>
                         <p><span><ForumIcon /> Topic Discussed:</span> <span>{group.topic_name}</span></p>
+                        <p><span><TopicIcon /> Type:</span> <span>{group.is_academic ? 'Academic' : 'Non-academic'}</span></p>
                         <p><span><PeopleIcon /> Members:</span> <span>{group.member_count}/{group.member_limit}</span></p>
                         <p><span><CalendarMonthIcon /></span> Created <span>{group.created_at}</span></p>
                     </div>

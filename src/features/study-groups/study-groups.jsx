@@ -24,6 +24,7 @@ export function StudyGroups({ heading, groups, seed, setSeed }) {
                             owner={group.username} 
                             memberCount={group.member_count} 
                             memberLimit={group.member_limit}
+                            isAcademic={group.is_academic}
                             setSeed={setSeed}
                             seed={seed}
                         />
