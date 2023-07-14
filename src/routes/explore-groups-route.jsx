@@ -15,13 +15,16 @@ function ExploreGroupsRoute() {
     const [basedOnTopics, setBasedOnTopics] = useState();
 
     useEffect(() => {
+
         (async function() {
+            setBasedOnUsers(null);
             const groups = await useDiscoverGroups(user.id);
             if (groups.length > 0) {
                 setBasedOnUsers(groups);
             }
         })();
         (async function() {
+            setBasedOnTopics(null);
             const groups = await useGroupsBasedOnTopics(user.id);
             if (groups.length > 0) {
                 setBasedOnTopics(groups);

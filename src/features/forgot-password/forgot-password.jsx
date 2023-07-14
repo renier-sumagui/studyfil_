@@ -29,7 +29,7 @@ function PasswordForm({ email, setOpenModal }) {
                 id="password"
                 label="New password"
                 name="password"
-                type="text"
+                type="password"
                 autoFocus
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
