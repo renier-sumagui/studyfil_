@@ -25,6 +25,13 @@ function PostOptionButton({ isResolved, postId, setSeed }) {
         setSeed(Math.random());
     }
 
+    async function handleDelete(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        await Axios.delete(`https://studyfil-api.onrender.com/posts/delete/${postId}`, { withCredentials: true });
+        setSeed(Math.random());
+    }
+
     return (
         <div className={GroupForumCss.postOptionContainer}>
             <button 
@@ -39,9 +46,14 @@ function PostOptionButton({ isResolved, postId, setSeed }) {
                 <MoreHorizIcon />
             </button>
             {modal &&
-            <button onClick={handleMark} className={GroupForumCss.postOptionDialog}>
-                Mark as {isResolved ? 'unresolved' : 'resolved'}
-            </button>
+            <div className={GroupForumCss.postOptionDialog}>
+                <button onClick={handleMark} >
+                    Mark as {isResolved ? 'unresolved' : 'resolved'}
+                </button>
+                <button onClick={handleDelete}>
+                    Delete post
+                </button>
+            </div>
             }
         </div>
     )

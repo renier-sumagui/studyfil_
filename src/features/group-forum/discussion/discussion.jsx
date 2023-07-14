@@ -14,6 +14,7 @@ export function Discussion() {
 
     useEffect(() => {
         (async function() {
+            setPosts();
             setLoading(true);
             const response = await usePosts(group.id);
             setLoading(false);

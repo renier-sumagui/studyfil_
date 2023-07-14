@@ -216,8 +216,11 @@
 }
 .postOptionDialog {
     position: absolute;
+    width: 220px;
     right: 0;
-
+}
+.postOptionDialog button {
+    padding: 5px;
 }
 /* -------------------------------- COMMENT -------------------------------- */
 .comment {
