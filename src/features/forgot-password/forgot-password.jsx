@@ -106,7 +106,7 @@ export function ForgotPassword() {
         e.preventDefault();
         if (emailError) setEmailError(false);
         setLoading(true);
-        const response = await Axios.post('http://localhost:8000/user/resetcode', { email }, { withCredentials: true });
+        const response = await Axios.post('https://studyfil-api.onrender.com/user/resetcode', { email }, { withCredentials: true });
         setLoading(false);
         if (response.data.hasUser) {
             setOpenModal(true);
