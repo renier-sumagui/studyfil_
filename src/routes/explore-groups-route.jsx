@@ -13,6 +13,7 @@ function ExploreGroupsRoute() {
 
     const [basedOnUsers, setBasedOnUsers] = useState();
     const [basedOnTopics, setBasedOnTopics] = useState();
+    const [helper, setHelper] = useState();
 
     useEffect(() => {
 
@@ -30,13 +31,16 @@ function ExploreGroupsRoute() {
                 setBasedOnTopics(groups);
             }
         })();
+        if (!basedOnUsers && !basedOnTopics) {
+            setHelper(<h3>No groups yet</h3>)
+        }
     }, [seed])
 
     return (
         <>
             {basedOnUsers ? <StudyGroups heading="Groups you might like" groups={basedOnUsers} seed={seed} setSeed={setSeed} /> : null}
             {basedOnTopics && <StudyGroups heading="Based on topics you like" groups={basedOnTopics} seed={seed} setSeed={setSeed} />}
-            {!basedOnUsers && !basedOnTopics ? <h3>No groups yet</h3> : null}
+            {helper && helper}
         </>
     )
 }
