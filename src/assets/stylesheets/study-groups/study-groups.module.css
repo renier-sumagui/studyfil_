@@ -111,4 +111,9 @@ dialog::backdrop {
     z-index: 2;
     position: absolute;
     width: 100%;
+    max-height: 100px;
+    overflow: auto;
+}
+.suggestedTopicWord:hover {
+    background: var(--gray);
 }

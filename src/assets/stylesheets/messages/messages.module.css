@@ -39,6 +39,7 @@
     font-weight: 500;
     border-radius: 5px;
     transition: background 200ms;
+    word-wrap: break-word;
 }
 .messageSidebar > ul > li > a:hover {
     background: var(--gray);

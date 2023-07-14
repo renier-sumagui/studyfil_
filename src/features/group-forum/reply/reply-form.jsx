@@ -12,7 +12,7 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
     const [initials, setInitials] = useState();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -33,7 +33,7 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
     }, [])
 
     return (
-        <form onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit} className={GroupForumCss.commentForm}>
+        <form onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit} className={GroupForumCss.commentForm} style={{ position: 'relative' }}>
             {loading && <AbsoluteCircular />}
             <div className={GroupForumCss.avatar}>{initials}</div>
             <textarea ref={inputRef} className={classnames(GroupForumCss.commentInput, 'replyTextarea')} onChange={(e) => setInputValue(e.target.value)} placeholder="Your answer"></textarea>

@@ -35,7 +35,7 @@ export function GroupSettings() {
             {group ? (
                 <>
                     <div className="flex justifySpaceBetween alignFlexStart gap5">
-                        <div className="flex alignCenter" style={{ padding: '0 0 10px 0'}}>
+                        <div className="flex alignCenter" style={{ padding: '0 0 10px 0', maxWidth: '85%' }}>
                             <button className={GroupForumCss.settingsBtn} onClick={() => navigate(-1)}><ArrowBackIosNewIcon /></button>
                             <h1>{group.group_name}</h1>
                         </div>
@@ -45,7 +45,7 @@ export function GroupSettings() {
                         <h2>Group Information</h2>
                         <p><span><PersonIcon /> Group Owner:</span> <span>{group.admin_username}</span></p>
                         <p><span><ForumIcon /> Topic Discussed:</span> <span>{group.topic_name}</span></p>
-                        <p><span><PeopleIcon /> Number of Members:</span> <span>{group.member_count}/{group.member_limit}</span></p>
+                        <p><span><PeopleIcon /> Members:</span> <span>{group.member_count}/{group.member_limit}</span></p>
                         <p><span><CalendarMonthIcon /></span> Created <span>{group.created_at}</span></p>
                     </div>
                     <Members adminId={group.admin_id} groupId={group.id}/>

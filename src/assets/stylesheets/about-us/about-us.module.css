@@ -5,7 +5,6 @@
 }
 .aboutUs {
     height: 100%;
-    border: 5px solid black;
     overflow: auto;
     background: var(--primary-color);
 }

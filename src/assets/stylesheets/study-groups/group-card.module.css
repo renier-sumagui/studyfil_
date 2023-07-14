@@ -23,6 +23,11 @@
 .groupCard > * {
     margin-bottom: 5px;
 }
+.groupCard > h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .groupCard > h4 {
     border-top: 1px solid var(--light-blue);
     margin-top: 5px !important;
@@ -37,7 +42,7 @@
 }
 .joinBtn, .viewBtn {
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     right: 10px;
     border-radius: 20px;
     border: none;

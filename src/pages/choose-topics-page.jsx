@@ -25,7 +25,7 @@ export function ChooseTopicsPage() {
     let [topicLabel, setTopicLabel] = useState([]);
 
     (async function() {
-        const response = await Axios.get('http://localhost:8000/user/check', { withCredentials: true });
+        const response = await Axios.get('https://studyfil-api.onrender.com/user/check', { withCredentials: true });
         if (response.data.isLoggedIn) {
             setUser(response.data.user);
             setIsLoggedIn(true);
@@ -68,7 +68,7 @@ export function ChooseTopicsPage() {
 
     useEffect(() => {
         (async function() {
-            const response = await Axios.get('http://localhost:8000/topics/all', { withCridentials: true });
+            const response = await Axios.get('https://studyfil-api.onrender.com/topics/all', { withCridentials: true });
             const allTopics = response.data.topics;
             const tempAllTopics = allTopics.map((topic) => {
                 return { label: topic.name, id: topic.id, name: topic.name };

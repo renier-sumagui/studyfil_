@@ -47,7 +47,6 @@ export function SearchTopicsForm({ open, setOpen }) {
 
     useEffect(() => {
         if (open) {
-            console.log('opened');
             (async function() {
                 setLoading(true);
                 const response = await Axios.get(`https://studyfil-api.onrender.com/topics/all`);

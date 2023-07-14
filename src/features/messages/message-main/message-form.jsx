@@ -6,6 +6,7 @@ import { useUserContext } from 'src/context';
 import { socket } from './socket.js';
 import { profanityFilter } from 'src/utils/';
 import { getNameInitials } from 'src/utils/';
+import SendIcon from '@mui/icons-material/Send';
 
 export function MessageForm() {
     const { group } = useMessageContext();
@@ -24,7 +25,7 @@ export function MessageForm() {
     return (
         <form className={MessagesCss.messageForm} onSubmit={handleSubmit}>
             <input type="text" placeholder="Message" className={MessagesCss.messageInput}  value={message} onChange={(e) => setMessage(e.target.value)} />
-            <button type="submit" disabled={message ? false : true}><i className="fa-solid fa-paper-plane"></i></button>
+            <button type="submit" disabled={message ? false : true}><SendIcon /></button>
         </form>
     )
 }

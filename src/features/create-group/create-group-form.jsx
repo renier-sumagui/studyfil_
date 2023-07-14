@@ -7,6 +7,8 @@ import { useUserContext } from 'context/';
 import submitNewTopic from './submit-new-topic.js';
 import { profanityFilter } from 'src/utils/';
 import { BadWordsAlert } from 'features/alerts/';
+import { AbsoluteCircular } from 'features/loading';
+import Axios from 'axios';
 
 export function CreateGroupForm({ handleClose, reload }) {
     const { user } = useUserContext();
@@ -21,6 +23,12 @@ export function CreateGroupForm({ handleClose, reload }) {
     const [formal, setFormal] = useState(false);
     const [openChecklist, setOpenChecklist] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [topics, setTopics] = useState();
+
+    const [suggestions, setSuggestions] = useState();
+    const [open, setOpen] = useState(false);
+    const valueRef = useRef(null);
+    const [loading, setLoading] = useState(false);
 
     const checklist = (
         <div style={{margin: '10px 0'}}>
@@ -37,22 +45,6 @@ export function CreateGroupForm({ handleClose, reload }) {
         </div>
     );
 
-    function handleTopicSuggestion() {
-        setTopic(suggestedTopic);
-        setSuggestedTopic('');
-    }
-
-    function handleTopicChange(e) {
-        let tempValue = e.target.value;
-        let lowerCaseValue = tempValue.toLowerCase();
-        setTopic(e.target.value);
-        if (allTopics[`${lowerCaseValue}`]) {
-            setSuggestedTopic(allTopics[`${lowerCaseValue}`].name);
-        } else {
-            setSuggestedTopic('');
-        }
-    }
-
     async function handleSubmit(e) {
         e.preventDefault();
         const allTopics = await useTopics();
@@ -65,7 +57,6 @@ export function CreateGroupForm({ handleClose, reload }) {
             return;
         }
 
-
         if (openChecklist) {
             setOpenChecklist(false);
             const filteredTopic = await profanityFilter(groupName);
@@ -75,8 +66,9 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         if (allTopics[topic.toLowerCase()]) {   /* this checks if the entered word is in the topics */
             setOpenChecklist(false);
+            setLoading(true);
             let response = await submitGroup(user.id, groupName, allTopics[`${topic.toLocaleLowerCase()}`].id, memberCount);
-            console.log(response);
+            setLoading(false);
             handleClose(e);
             setSuggestedTopic('');
             setTopic('');
@@ -89,20 +81,105 @@ export function CreateGroupForm({ handleClose, reload }) {
     }
 
     useEffect(() => {
+        if (open) {
+            (async function() {
+                const response = await Axios.get(`https://studyfil-api.onrender.com/topics/all`);
+                console.log(response.data.topics);
+                setTopics(response.data.topics);
+                setSuggestions(response.data.topics.map((topic) => {
+                    return <p 
+                                key={topic.key}
+                                onMouseDown={() => handleTopicClick(topic.name)} 
+                                onClick={(e) => { 
+                                    valueRef.current.focus() 
+                                    e.stopPropagation();
+                                    setOpen(false);
+                                }}
+                                className={StudyGroupsCss.suggestedTopicWord}
+                            >
+                                    {topic.name}
+                            </p>
+                }));
+            })();
+        }
+    }, [open])
+
+    useEffect(() => {
         (async function() {
             const allTopics = await useTopics();
             setAllTopics(allTopics);
         })();
     }, [])
 
+    useEffect(() => {
+        (function() {
+            if (topics) {
+                const tempArr = [];
+                for (let pointer = 0; pointer < topics.length; pointer++) {
+                    if(topics[pointer].name.toLowerCase().includes(topic.toLowerCase())) {
+                        tempArr.push(topics[pointer]);
+                    };
+                }
+                if (tempArr.length > 0) {
+                    setSuggestions(tempArr.map((topic) => {
+                        return <p 
+                                    key={topic.key} 
+                                    id={topic.key} 
+                                    className={StudyGroupsCss.suggestedTopicWord}
+                                    onMouseDown={() => handleTopicClick(topic.name)}
+                                    onClick={(e) => {
+                                        valueRef.current.focus()
+                                        e.stopPropagation();
+                                        setOpen(false);
+                                    }
+                                }
+                                >
+                                    {topic.name}
+                                </p>
+                    }))
+                } else {
+                    setSuggestions([<p>No topics found</p>])
+                }
+            }
+        })();
+    }, [topic])
+
+    function handleTopicClick(topicName) {
+        setTopic(topicName);
+        valueRef.current.focus();
+    }
+
+    function handleOpen(e) {
+        e.stopPropagation();
+        setOpen(true)
+    }
+
     return (
         <>
             {alert && <BadWordsAlert />}
-            <form className={StudyGroupsCss.createGroupForm} onSubmit={handleSubmit}>
+            <form 
+                className={StudyGroupsCss.createGroupForm} 
+                onSubmit={handleSubmit} 
+                onClick={(e) => { 
+                    e.stopPropagation(); 
+                    setOpen(false); }}
+            >
+                {loading && <AbsoluteCircular />}
                 <label className={StudyGroupsCss.searchTopics}>
                     Topic
-                    <input required  type="text" value={topic} onChange={handleTopicChange} placeholder="e.g. Baking"/>
-                    {suggestedTopic && <p onClick={handleTopicSuggestion} className={StudyGroupsCss.suggestedTopic}>{suggestedTopic}</p>}
+                    <input 
+                        required  
+                        type="text" 
+                        value={topic} 
+                        onChange={(e) => setTopic(e.target.value)} 
+                        onClick={handleOpen} placeholder="e.g. Baking"
+                        onBlur={() => setOpen(false)}
+                    />
+                    {open && 
+                        <div className={StudyGroupsCss.suggestedTopic}>
+                            {suggestions}
+                        </div>
+                    }
                 </label>
                 <label>
                     Group name
