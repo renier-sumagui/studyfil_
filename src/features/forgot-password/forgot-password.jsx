@@ -6,6 +6,7 @@ import { ForgotPasswordCss } from 'stylesheets/forgot-password';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import { WrongPasswordAlert } from 'features/alerts';
 
 function PasswordForm({ email, setOpenModal }) {
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ function PasswordForm({ email, setOpenModal }) {
 
 function PinForm({ setIsPin }) {
     const [code, setCode] = useState('');
+    const [wrong, setWrong] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -55,11 +57,15 @@ function PinForm({ setIsPin }) {
         if (response.data.success) {
             setCode('');
             setIsPin(false);
+        } else {
+            setWrong(true);
+            setTimeout(() => setWrong(false), 2000);
         }
     }
 
     return (
-        <form className={ForgotPasswordCss.modalContent} onSubmit={handleSubmit}>
+        <form className={ForgotPasswordCss.modalContent} onSubmit={handleSubmit} style={{ position: 'relative' }}>
+            {wrong && <WrongPasswordAlert />}
             <p>We've sent you the verification code. Please check your inbox or spam.</p>
             <TextField
                 fullWidth

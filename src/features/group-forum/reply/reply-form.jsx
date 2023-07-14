@@ -12,7 +12,7 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
     const [initials, setInitials] = useState();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
