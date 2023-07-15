@@ -11,7 +11,7 @@ function ConfirmModal({ modalRef, closeModal }) {
     const navigate = useNavigate();
     
     async function handleDelete() {
-        await Axios.delete('https://studyfil.vercel.app/user/delete', { withCredentials: true });
+        await Axios.delete('https://studyfil-api.onrender.com/user/delete', { withCredentials: true });
         // await Axios.get('http://localhost:8000/user/logout', { withCredentials: true });
         closeModal();
         navigate('/signin');
