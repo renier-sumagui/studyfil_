@@ -146,7 +146,7 @@ function MeetingView(props) {
       <div className="container">
         <h3>Meeting Id: {props.meetingId}</h3>
         {joined && joined == "JOINED" ? (
-			<div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+			<div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
 				<Controls />
 				{[...participants.keys()].map((participantId) => (
 				<ParticipantView
