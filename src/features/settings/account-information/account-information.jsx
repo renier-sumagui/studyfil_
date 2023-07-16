@@ -12,7 +12,6 @@ function ConfirmModal({ modalRef, closeModal }) {
     
     async function handleDelete() {
         await Axios.delete('https://studyfil-api.onrender.com/user/delete', { withCredentials: true });
-        // await Axios.get('http://localhost:8000/user/logout', { withCredentials: true });
         closeModal();
         navigate('/signin');
     }

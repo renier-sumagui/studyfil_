@@ -37,3 +37,8 @@
 .feedbackForm > input[type="submit"]:hover {
     box-shadow: var(--shadow);
 }
+.feedbackDialog {
+    position: absolute;
+    width: 85px;
+    right: 0;
+}
