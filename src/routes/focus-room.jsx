@@ -57,7 +57,7 @@ function ParticipantView(props) {
     }, [micStream, micOn]);
 
     return (
-    <div style={{ width: '350px', border: '1px solid black', borderRadius: '10px', padding: '5px' }}>
+    <div style={{ width: '340px', border: '1px solid black', borderRadius: '10px', padding: '5px' }}>
         <p><strong>{displayName}</strong> | Webcam: {webcamOn ? "ON" : "OFF"} | Mic: {micOn ? "ON" : "OFF"}</p>
         <audio ref={micRef} autoPlay playsInline muted={isLocal} />
         {webcamOn && (
