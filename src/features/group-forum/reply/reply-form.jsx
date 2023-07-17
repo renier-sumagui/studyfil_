@@ -19,6 +19,7 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
         const filteredReply = await profanityFilter(inputValue);
         setLoading(true);
         await submitReply(user.id, filteredReply, commentId, groupId);
+        setInputValue('');
         setLoading(false);
         setSeed(Math.random());
     }

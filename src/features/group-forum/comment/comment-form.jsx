@@ -18,6 +18,7 @@ export function CommentForm({ postId, setSeed, groupId }) {
         const filteredComment = await profanityFilter(comment);
         setLoading(true);
         await submitComment(user.id, postId, filteredComment, groupId);
+        setComment('');
         setLoading(false);
         setComment('');
         setSeed(Math.random());
