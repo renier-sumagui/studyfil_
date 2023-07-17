@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -16,9 +17,6 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
 
 export function ChosenTopics({ chosenTopics, setChosenTopics }) {
-    const [topics, setTopics] = useState(['Item 1', 'Item 2', 'Item 3', 'Item 4']);
-
-    const temp = { 1: 'baking', 3: 'cooking' };
 
     let topicsArr = [];
 
@@ -37,11 +35,15 @@ export function ChosenTopics({ chosenTopics, setChosenTopics }) {
                     <Typography variant="p" sx={{ fontWeight: "bold", fontSize: '1rem' }}>
                         {chosenTopics[row].name}
                     </Typography>
-                    <Button onClick={removeItem} data-topic-id={chosenTopics[row].id} sx={{padding: '0 5px', margin: '0 0 0 5px', minWidth: 'fit-content', fontWeight: 400 }}>X</Button>
+                    <Button onClick={removeItem} data-topic-id={chosenTopics[row].name} sx={{padding: '0 5px', margin: '0 0 0 5px', minWidth: 'fit-content', fontWeight: 400 }}>X</Button>
                 </Item>
             )
         }
     }
+
+    useEffect(() => {
+        console.log(chosenTopics);
+    }, [chosenTopics])
 
     return (
         <>
