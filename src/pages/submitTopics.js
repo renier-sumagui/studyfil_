@@ -5,7 +5,7 @@ async function submitTopics(topics) {
     for (const row in topics) {
         tempTopics.push(topics[row]);
     }
-    const response = await Axios.post('http://localhost:8000/user/topic/add');
+    const response = await Axios.post('https://studyfil-api.onrender.com/user/topic/add');
 }
 
 export default submitTopics;
