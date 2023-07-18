@@ -16,7 +16,7 @@ export function SignInPage() {
 
     useState(() => {
         (async function() {
-            const response = await Axios.get('http://localhost:8000/user/check', { withCridentials: true });
+            const response = await Axios.get('https://studyfil-api.onrender.com/user/check', { withCridentials: true });
             if (response.data.isLoggedIn) {
                 navigate('/groups/explore');
             }
