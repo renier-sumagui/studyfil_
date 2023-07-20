@@ -5,6 +5,7 @@ import { SideBarLinksCss as SideLinks }  from 'stylesheets/home';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { SIDEBAR_LINKS1, SIDEBAR_LINKS2} from 'constants/';
 import { useSideLinkContext } from 'context/';
+import { logout } from 'src/utils';
 
 export function SideBarLinks() {
     const curr = useRef(null);
@@ -25,9 +26,7 @@ export function SideBarLinks() {
     }
 
     async function handleLogout() {
-        const response = await Axios.get('http://localhost:8000/user/logout', { withCredentials: true });
-        console.log(response);
-        navigate('/signin');
+        logout();
     }
 
     return (
@@ -55,7 +54,6 @@ export function SideBarLinks() {
                 })}
                 <li>
                     <NavLink 
-                        to="/signin" 
                         onClick={handleLogout}
                     >
                         <span><LogoutOutlinedIcon /></span> Logout
