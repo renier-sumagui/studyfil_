@@ -1,5 +1,9 @@
 @import 'stylesheets/colors.css';
 
+.profile, .backgroundLine {
+    background: var(--blue);
+}
+
 .aboutUse, .teamSection {
     width: 100%;
 }
@@ -7,6 +11,7 @@
     height: 100%;
     overflow: auto;
     background: var(--primary-color);
+    color: var(--blue);
 }
 .aboutUsSection, .aboutUsContainer {
     margin: 0 auto;
@@ -21,7 +26,7 @@
 }
 .title {
     font-size: 3em;
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid var(--blue);
     display: table;
     padding-right: 20px;
 }
@@ -41,15 +46,21 @@
     text-decoration: underline;
 }
 /* ----------------------------------------------------------- PROFILE -----------------------------------------------------------*/
+.profileWrapper, .profile { 
+    position: relative;
+}
 .teamSection, .profile {
-    padding: 20px;
+    padding: 30px;
+}
+.profileWrapper {
+    /* background: var(--blue); */
 }
 .profile {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
-    background: var(--blue);
-    border-radius: 20px;
+    border-radius: 50px;
+    z-index: 2;
 }
 .profileImage {
     width: 300px;
@@ -74,4 +85,26 @@
 }
 .svg {
     margin-bottom: -10px;
+}
+.dividerWrapper {
+    display: flex;
+    height: 100px;
+    gap: 20px;
+}
+.dividerWrapper > div:nth-child(1) {
+    border-radius: 0 50px 50px 0;
+}
+.dividerWrapper > div:nth-child(2) {
+    border-radius: 50px 0px 0px 50px;
+}
+.divider {
+    background: var(--primary-color);
+    height: 100%;
+    z-index: 2;
+}
+.backgroundLine {
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    top: 0;
 }

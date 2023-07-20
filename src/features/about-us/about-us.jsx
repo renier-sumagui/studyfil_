@@ -14,42 +14,59 @@ export function AboutUs() {
             <section className={AboutUsCss.teamSection}>
                 <div className={AboutUsCss.aboutUsContainer}>
                     <h1 className={AboutUsCss.title}>Meet the Team</h1>
-                    <div className={AboutUsCss.profile}>
-                        <img src='/img/krizzle.png' className={AboutUsCss.profileImage} />
-                        <div className={AboutUsCss.profileDescription}>
-                            <p>Krizzle Mae Dapito</p>
-                            <p>Team Leader</p>
+                    <div className={AboutUsCss.profileWrapper}>
+                        <div className={AboutUsCss.profile}>
+                            <img src='/img/krizzle.png' className={AboutUsCss.profileImage} />
+                            <div className={AboutUsCss.profileDescription}>
+                                <p>Krizzle Mae Dapito</p>
+                                <p>Team Leader</p>
+                            </div>
                         </div>
+                        <div className={AboutUsCss.dividerWrapper}>
+                            <div className={AboutUsCss.divider} style={{ width: '72.5%'}} ></div>
+                            <div className={AboutUsCss.divider} style={{ width: 'calc(100% - 75%)'}}></div>
+                        </div>
+                        <div className={AboutUsCss.backgroundLine} style={{ right: '15%'}}></div>
                     </div>
-                    <svg width="100%" height="100" className={AboutUsCss.svg}>
-                        <line className={AboutUsCss.line} x1="670" y1="0" x2="670" y2="490" />
-                    </svg>
-                    <div className={AboutUsCss.profile}>
-                        <div className={AboutUsCss.profileDescription}>
-                            <p>Audrey Jane Delos Santos</p>
-                            <p>UI/UX Designer</p>
+
+                    <div className={AboutUsCss.profileWrapper}>
+                        <div className={AboutUsCss.profile}>
+                            <div className={AboutUsCss.profileDescription}>
+                                <p>Audrey Jane Delos Santos</p>
+                                <p>UI/UX Designer</p>
+                            </div>
+                            <img src='/img/audrey.png' className={AboutUsCss.profileImage} />
                         </div>
-                        <img src='/img/audrey.png' className={AboutUsCss.profileImage} />
+                        <div className={AboutUsCss.dividerWrapper}>
+                            <div className={AboutUsCss.divider} style={{ width: 'calc(100% - 75%)'}} ></div>
+                            <div className={AboutUsCss.divider} style={{ width: '72.5%'}}></div>
+                        </div>
+                        <div className={AboutUsCss.backgroundLine} style={{ left: '15%'}}></div>
                     </div>
-                    <svg width="100%" height="100" className={AboutUsCss.svg}>
-                        <line className={AboutUsCss.line} x1="230" y1="0" x2="230" y2="490" />
-                    </svg>
-                    <div className={AboutUsCss.profile}>
-                        <img src='/img/sophia.png' className={AboutUsCss.profileImage} />
-                        <div className={AboutUsCss.profileDescription}>
-                            <p>Sophia Jane Seibel</p>
-                            <p>Academic Analyst</p>
+
+                    <div className={AboutUsCss.profileWrapper}>
+                        <div className={AboutUsCss.profile}>
+                            <img src='/img/sophia.png' className={AboutUsCss.profileImage} />
+                            <div className={AboutUsCss.profileDescription}>
+                                <p>Sophia Jane Seibel</p>
+                                <p>Academic Analyst</p>
+                            </div>
                         </div>
+                        <div className={AboutUsCss.dividerWrapper}>
+                            <div className={AboutUsCss.divider} style={{ width: '72.5%'}} ></div>
+                            <div className={AboutUsCss.divider} style={{ width: 'calc(100% - 75%)'}}></div>
+                        </div>
+                        <div className={AboutUsCss.backgroundLine} style={{ right: '15%'}}></div>
                     </div>
-                    <svg width="100%" height="100" className={AboutUsCss.svg}>
-                        <line className={AboutUsCss.line} x1="670" y1="0" x2="670" y2="490" />
-                    </svg>
-                    <div className={AboutUsCss.profile}>
-                        <div className={AboutUsCss.profileDescription}>
-                            <p>Renier Paolo D. Sumagui</p>
-                            <p>Developer</p>
+                    
+                    <div className={AboutUsCss.profileWrapper}>
+                        <div className={AboutUsCss.profile}>
+                            <div className={AboutUsCss.profileDescription}>
+                                <p>Renier Paolo D. Sumagui</p>
+                                <p>Developer</p>
+                            </div>
+                            <img src='/img/renier.jpg' className={AboutUsCss.profileImage} />
                         </div>
-                        <img src='/img/renier.jpg' className={AboutUsCss.profileImage} />
                     </div>
                 </div>
             </section>
