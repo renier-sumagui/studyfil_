@@ -26,7 +26,8 @@ export function SideBarLinks() {
     }
 
     async function handleLogout() {
-        logout();
+        await Axios.get('https://studyfil-api.onrender.com/user/logout', { withCredentials: true });
+        navigate('/signin');
     }
 
     return (
