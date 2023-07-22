@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -8,15 +8,17 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import submitPin from './submit-pin.js';
+import { AbsoluteCircular } from 'features/loading';
 
 export function PinModal({ open, handleOpen, handleClose }) {
     const [pin, setPin] = React.useState('');
     const [error, setError] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
     const navigate = useNavigate();
+    const [disabledButton, setDisabledButton] = useState(true);
 
-    const disabledButton = <Button onClick={handleClose} sx={{ mt: 1, borderRadius: '20px', padding: '0 20px' }} disabled variant="outlined">Confirm</Button>;
-    const enabledButton = <Button onClick={handleSubmit} sx={{ mt: 1, borderRadius: '20px', padding: '0 20px' }} variant="outlined">Confirm</Button>;
+    const [submitting, setSubmitting] = useState(false);
+
 
 
     /**
@@ -24,29 +26,32 @@ export function PinModal({ open, handleOpen, handleClose }) {
      * if the code matched, close the modal and navigate to choose topics
      */
     async function handleSubmit() {
+        setSubmitting(true);
         const result = await submitPin(pin);
         if (!result.success) {
             setSuccess(false);
             setError(true);
+            setSubmitting(false);
         } else {
             setError(false);
-            // close modal and navigate to choose topics page
+            setSubmitting(false);
             navigate('/signup/topics');
         }
     }
 
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
             <StyledModal
                 aria-labelledby="unstyled-modal-title"
                 aria-describedby="unstyled-modal-description"
                 open={open}
                 slots={{ backdrop: StyledBackdrop }}
                 onBackdropClick={() => {
+                    if (!submitting) {
                         setError(false);
-                        handleClose()
+                        handleClose();
                     }
-                }
+                }}
             >
                 <Grid 
                     container 
@@ -68,7 +73,14 @@ export function PinModal({ open, handleOpen, handleClose }) {
                             autoFocus
                         />
                     </Box>
-                    {pin.length > 0 ? enabledButton : disabledButton}
+                    <Button 
+                        onClick={handleSubmit} 
+                        sx={{ mt: 1, borderRadius: '20px', padding: '0 20px' }} 
+                        variant="outlined"
+                        disabled={pin.length === 0 || submitting && true}
+                    >
+                        Confirm
+                    </Button>
                 </Grid>
             </StyledModal>
         </div>
