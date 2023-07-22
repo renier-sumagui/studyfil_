@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 export function MainSection({ children }) {
     return (
-        <div className={classnames(MainSectionCss.mainSection)}>
+        <div id="main-section" className={classnames(MainSectionCss.mainSection)}>
             { children }
         </div>
     )
