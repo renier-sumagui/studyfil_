@@ -6,7 +6,7 @@ import { useUserContext } from 'context/';
 import { AbsoluteCircular } from 'features/loading';
 import GroupIcon from '@mui/icons-material/Group';
 
-export function GroupCard({ groupId, groupName, topic, owner, memberLimit, memberCount, setSeed, isAcademic }) {
+export function GroupCard({ groupId, groupName, topic, owner, memberLimit, memberCount, setSeed, isAcademic, onJoinClick }) {
     const { user } = useUserContext();
     const [loading, setLoading] = useState(false);
 
@@ -14,8 +14,9 @@ export function GroupCard({ groupId, groupName, topic, owner, memberLimit, membe
         setLoading(true);
         const response = await joinGroup(user.id, groupId);
         if (response.success) {
-            setSeed(Math.random());
+            onJoinClick();
         }
+
         setLoading(false);
     }
 
