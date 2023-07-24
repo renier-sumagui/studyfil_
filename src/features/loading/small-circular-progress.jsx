@@ -10,7 +10,7 @@ export function SmallCircularProgress() {
                 size="1.5rem"
                 sx={{
                     position: 'absolute',
-                    right: '10px',
+                    right: '50px',
                     top: '3px'
                 }}
             />;

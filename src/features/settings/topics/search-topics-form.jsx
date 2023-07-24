@@ -31,12 +31,16 @@ export function SearchTopicsForm({ open, setOpen }) {
 
     function handleAdd(e) {
         e.preventDefault();
-        if (topicsObject[value.toLowerCase()]) {
-            let key = topicsObject[value.toLowerCase()].name;
-            let id = topicsObject[value.toLowerCase()].id;
-            let temp = {...interestedTopics};
-            temp[key] = { id: id };
-            setInterestedTopics({...temp});
+        if (value) {
+            if (topicsObject[value.toLowerCase()]) {
+                let key = topicsObject[value.toLowerCase()].name;
+                let id = topicsObject[value.toLowerCase()].id;
+                let temp = {...interestedTopics};
+                temp[key] = { id: id };
+                setInterestedTopics({...temp});
+            }
+        } else {
+            return;
         }
     }
 
@@ -56,7 +60,10 @@ export function SearchTopicsForm({ open, setOpen }) {
                 setSuggestions(response.data.topics.map((topic) => {
                     return <p 
                                 key={topic.key}
-                                onMouseDown={() => handleTopicClick(topic.name)} 
+                                onMouseDown={() => {
+                                    handleTopicClick(topic.name);
+                                    setOpen(false);
+                                }}
                                 onClick={(e) => { 
                                     valueRef.current.focus() 
                                     e.stopPropagation();
@@ -84,7 +91,10 @@ export function SearchTopicsForm({ open, setOpen }) {
                                     key={topic.key} 
                                     id={topic.key} 
                                     className={SettingsCss.topicSuggestion}
-                                    onMouseDown={() => handleTopicClick(topic.name)}
+                                    onMouseDown={() => {
+                                        handleTopicClick(topic.name);
+                                        setOpen(false);
+                                    }}
                                     onClick={(e) => {
                                         valueRef.current.focus()
                                         e.stopPropagation();

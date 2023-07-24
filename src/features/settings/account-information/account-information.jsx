@@ -9,19 +9,22 @@ import { submitAccountInformation } from './submit-account-information.js';
 
 function ConfirmModal({ modalRef, closeModal }) {
     const navigate = useNavigate();
+    const [disabled, setDisabled] = useState(false);
     
     async function handleDelete() {
+        setDisabled(true);
         await Axios.delete('https://studyfil-api.onrender.com/user/delete', { withCredentials: true });
         closeModal();
         navigate('/signin');
+        setDisabled(false);
     }
-
+    
     return (
         <dialog ref={modalRef}>
             <p>Are you sure to delete your account?</p>
             <div className="flex justifySpaceBetween" style={{ marginTop: '20px' }}>
-                <button className="buttonDanger" onClick={handleDelete}>Yes</button>
-                <button className="buttonSuccess" onClick={() => closeModal()}>No</button>
+                <button className="buttonDanger" onClick={handleDelete} disabled={disabled}>Yes</button>
+                <button className="buttonSuccess" onClick={() => closeModal()} disabled={disabled}>No</button>
             </div>
         </dialog>
     )
