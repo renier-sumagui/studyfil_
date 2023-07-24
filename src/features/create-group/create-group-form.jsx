@@ -47,6 +47,8 @@ export function CreateGroupForm({ handleClose, reload }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        
+        setLoading(true);
         const allTopics = await useTopics();
 
         const filteredGroupName = await profanityFilter(groupName);
@@ -66,9 +68,7 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         if (allTopics[topic.toLowerCase()]) {   /* this checks if the entered word is in the topics */
             setOpenChecklist(false);
-            setLoading(true);
             let response = await submitGroup(user.id, groupName, allTopics[`${topic.toLocaleLowerCase()}`].id, memberCount);
-            setLoading(false);
             handleClose(e);
             setSuggestedTopic('');
             setTopic('');
@@ -78,6 +78,7 @@ export function CreateGroupForm({ handleClose, reload }) {
         } else {    /* if the entered word isn't found, open the checklist to add the new topic */
             setOpenChecklist(true);
         }
+        setLoading(false);
     }
 
     useEffect(() => {

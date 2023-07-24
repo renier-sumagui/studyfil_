@@ -42,7 +42,7 @@ function ExploreGroupsRoute() {
                     const groupIds = getGroupIds(userBasedGroups);
                     setGroupIds(prev => [...prev, ...groupIds]);
                     if (userBasedGroups.length > 0 && userBasedGroups[userBasedGroups.length - 1].id !== basedOnUsers[basedOnUsers.length - 1] || loading) {
-                        setBasedOnUsers(prev => [...prev, ...userBasedGroups]);
+                        setBasedOnUsers(prev => [...prev, ...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                     } else {
                         setLoadUserBased(false);
@@ -55,7 +55,7 @@ function ExploreGroupsRoute() {
                     if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                         const groupIds = getGroupIds(topicBasedGroups);
                         setGroupIds(prev => [...prev, ...groupIds]);
-                        setBasedOnTopics(topicBasedGroups);
+                        setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                     } else { /* Else get all groups */
                         setLoadTopicBased(false);
@@ -63,7 +63,7 @@ function ExploreGroupsRoute() {
                         if (groups.length > 0) {
                             const groupIds = getGroupIds(moreGroups);
                             setGroupIds(prev => [...prev, ...groupIds]);
-                            setMoreGroups(groups);
+                            setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
                         } else {
                             setLoadMoreGroups(false);
@@ -73,19 +73,18 @@ function ExploreGroupsRoute() {
             } else if (loadTopicBased) {
                 const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
                 if (topicBasedGroups.length > 0) {
-
                     if (topicBasedGroups.length > 0 && topicBasedGroups[topicBasedGroups.length - 1].id !== basedOnTopics[basedOnTopics.length - 1].id || loading) {
                         const groupIds = getGroupIds(topicBasedGroups);
                         setGroupIds(prev => [...prev, ...groupIds]);
-                        setBasedOnTopics(prev => [...prev, ...topicBasedGroups]);
+                        setBasedOnTopics(prev => [...prev, ...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     } else {
                         setLoadTopicBased(false);
                         setPage(1);
-                        /* Has topics of interest but the latest group is already recommended, load initial more groups */
+                        /* Has topics of interest but the latest group is already recommended, load initial `more groups` */
                         const groups = await useMoreGroups(user.id, groupIds, 1);
                         if (groups.length > 0) {
                             setPage(prev => prev + 1);
-                            setMoreGroups([...groups]);
+                            setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         } else {
                             setLoadMoreGroups(false);
                             setPage(1);
@@ -97,19 +96,18 @@ function ExploreGroupsRoute() {
                     const groups = await useMoreGroups(user.id, groupIds, 1);
                     if (groups.length > 0) {
                         setPage(prev => prev + 1);
-                        setMoreGroups([...groups]);
+                        setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     } else {
                         setLoadMoreGroups(false);
                         setPage(1);
                     }
                 }
             } else if (loadMoreGroups) {
-                
                 const groups = await useMoreGroups(user.id, groupIds, page);
                 if (groups.length > 0) {
                     if (groups.length > 0 && groups[groups.length - 1].id !== moreGroups[moreGroups.length - 1].id || loading) {
                         setPage(prev => prev + 1);
-                        setMoreGroups(prev => [...prev, ...groups]);
+                        setMoreGroups(prev => [...prev, ...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     } else {
                         setLoadMoreGroups(false);
                         setPage(1);
@@ -133,7 +131,7 @@ function ExploreGroupsRoute() {
             if (userBasedGroups.length > 0) {   
                 const groupIds = getGroupIds(userBasedGroups);
                 setGroupIds(prev => [...prev, ...groupIds]);
-                setBasedOnUsers(userBasedGroups);
+                setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 setPage(prev => prev + 1);
                 if (userBasedGroups.length < 12) {
                     setLoadUserBased(false);
@@ -142,7 +140,7 @@ function ExploreGroupsRoute() {
                     if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                         const groupIds = getGroupIds(topicBasedGroups);
                         setGroupIds(prev => [...prev, ...groupIds]);
-                        setBasedOnTopics(topicBasedGroups);
+                        setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                         if (topicBasedGroups.length < 12) {
                             setLoadTopicBased(false);
@@ -150,7 +148,7 @@ function ExploreGroupsRoute() {
                             const groups = await useMoreGroups(user.id, groupIds, page);
                             if (groups.length > 0) {
                                 const groupIds = getGroupIds(groups);
-                                setMoreGroups(groups);
+                                setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                                 setPage(prev => prev + 1);
                             } else {
                                 setLoadMoreGroups(false);
@@ -160,7 +158,7 @@ function ExploreGroupsRoute() {
                         setLoadTopicBased(false);
                         const groups = await useMoreGroups(user.id, groupIds, page);
                         if (groups.length > 0) {
-                            setMoreGroups(groups);
+                            setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
                         } else {
                             setLoadMoreGroups(false);
@@ -174,14 +172,14 @@ function ExploreGroupsRoute() {
                 if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                     const groupIds = getGroupIds(topicBasedGroups);
                     setGroupIds(prev => [...prev, ...groupIds]);
-                    setBasedOnTopics(topicBasedGroups);
+                    setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     setPage(prev => prev + 1);
                     if (topicBasedGroups.length < 12) {
                         setLoadTopicBased(false);
                         setPage(1);
                         const groups = await useMoreGroups(user.id, groupIds, page);
                         if (groups.length > 0) {
-                            setMoreGroups(groups);
+                            setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
                         } else {
                             setLoadMoreGroups(false);
@@ -191,7 +189,7 @@ function ExploreGroupsRoute() {
                     setLoadTopicBased(false);
                     const groups = await useMoreGroups(user.id, groupIds, page);
                     if (groups.length > 0) {
-                        setMoreGroups(groups);
+                        setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                     } else {
                         setLoadMoreGroups(false);
@@ -206,6 +204,7 @@ function ExploreGroupsRoute() {
 
     useEffect(() => {
         const main = document.getElementById("main-section");
+        console.log(main);
         main.addEventListener('scroll', handleScroll);
         return () => {
             main.removeEventListener('scroll', handleScroll);
@@ -214,9 +213,30 @@ function ExploreGroupsRoute() {
     
     return (
         <>
-            {basedOnUsers && <StudyGroups heading="Study groups you might like" groups={basedOnUsers} seed={seed} setSeed={setSeed} />}
-            {basedOnTopics && <StudyGroups heading="Study groups based on topics you like" groups={basedOnTopics} seed={seed} setSeed={setSeed} />}
-            {moreGroups && <StudyGroups heading={!basedOnUsers && !basedOnTopics ? "Study groups" : "More study groups"} groups={moreGroups} seed={seed} setSeed={setSeed} />}
+            {basedOnUsers && 
+            <StudyGroups 
+                heading="Study groups you might like" 
+                groups={basedOnUsers} 
+                seed={seed} 
+                setSeed={setSeed} 
+                setStudyGroups={setBasedOnUsers}
+            />}
+            {basedOnTopics && 
+            <StudyGroups 
+                heading="Study groups based on topics you like" 
+                groups={basedOnTopics} 
+                seed={seed} 
+                setSeed={setSeed} 
+                setStudyGroups={setBasedOnTopics} 
+            />}
+            {moreGroups && 
+            <StudyGroups 
+                heading={!basedOnUsers && !basedOnTopics ? "Study groups" : "More study groups"} 
+                groups={moreGroups} 
+                seed={seed} 
+                setSeed={setSeed} 
+                setStudyGroups={setMoreGroups} 
+            />}
             {loading ? <AbsoluteCircular /> : !basedOnUsers && !basedOnTopics && !moreGroups ? <h3>No groups yet</h3> : null}
         </>
     )
