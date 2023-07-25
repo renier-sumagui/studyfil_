@@ -21,6 +21,7 @@ const GroupSettingsRoute = lazy(() => import('routes/group-settings-route.jsx'))
 const FeedbackRoute = lazy(() => import('routes/feedback-route.jsx'));
 const GroupSearchResultsRoute = lazy(() => import ('routes/group-search-results-route.jsx'));
 const FocusRoom = lazy(() => import ('routes/focus-room.jsx'));
+const AbuseRoute = lazy(() => import ('routes/abuse-route.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
         {
             path: '/feedback',
             element: <Suspense fallback={<Circular />}><FeedbackRoute /></Suspense>
+        },
+        {
+            path: '/abuse',
+            element: <Suspense fallback={<Circular />}><AbuseRoute /></Suspense>
         }
         ]
     },

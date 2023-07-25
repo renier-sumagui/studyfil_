@@ -7,3 +7,4 @@ export { FeedbackRoute } from './feedback-route.jsx';
 export { PostRoute } from './post-route.jsx';
 export { GroupSettingsRoute } from './group-settings-route.jsx';
 export { GroupSearchResultsRoute } from './group-search-results-route.jsx';
+export { AbuseRoute } from './abuse-route.jsx';

@@ -2,16 +2,24 @@ import { useCountries } from 'hooks/';
 
 import ExploreIcon from '@mui/icons-material/Explore';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+
 import Groups from '@mui/icons-material/Groups';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+
+import ReportIcon from '@mui/icons-material/Report';
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 
 export const SETTINGS_ACTION = {
     CHANGE_USERNAME: 'changeUsername',
@@ -61,6 +69,13 @@ export const SIDEBAR_LINKS2 = [
         path: "/settings",
         solid: <SettingsIcon />,
         outlined: <SettingsOutlinedIcon />
+    },
+    {
+        name: "Report Abuse",
+        id: "abuse",
+        path: "/abuse",
+        solid: <ReportIcon />, 
+        outlined: <ReportGmailerrorredIcon />
     },
     {
         name: "Feedback",

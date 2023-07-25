@@ -28,6 +28,7 @@
     background: var(--lighter-gray);
     overflow-x: hidden;
     padding: 0 5px;
+    position: relative;
 }
 .messageSidebar > ul > li {
     margin: 2px 0 2px 0;
@@ -112,9 +113,6 @@
     flex-direction: column;
 }
 /* ----------------------- Message Box ----------------------- */
-.messageBox {
-    /* margin-bottom: 10px; */
-}
 .userInfoContainer {
     width: -moz-fit-content;
     width: fit-content;
