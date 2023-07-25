@@ -9,19 +9,18 @@ import { AbsoluteCircular } from 'features/loading';
 export function MessageSidebar() {
     const { user } = useUserContext();
     const [groups, setGroups] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
         (async function() {
             const response = await useJoinedGroups(user.id);
+            setLoading(false);
             if (response.data.hasGroups) {
                 setGroups(response.data.groups.map((group) => {
                     return <GroupLink key={group.id} id={group.id} groupName={group.group_name} />
                 }));
             }
         })();
-        setLoading(false);
     }, [])
 
     return (
