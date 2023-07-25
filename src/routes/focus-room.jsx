@@ -168,10 +168,12 @@ function MeetingView(props) {
 
 function JoinScreen({ updateMeetingId, getMeetingAndToken }) {
     return (
-        <div>
-            <input type="text" placeholder="Enter MeetingId" onChange={(e) => updateMeetingId(e.target.value)} />
-            <button onClick={getMeetingAndToken}>Join</button>
-            <button onClick={getMeetingAndToken}>Create Meeting</button>
+        <div className="flex alignCenter justifyCenter" style={{ height: '100%' }}>
+            <div>
+                <input type="text" placeholder="Enter MeetingId" onChange={(e) => updateMeetingId(e.target.value)} />
+                <button onClick={getMeetingAndToken}>Join</button>
+                <button onClick={getMeetingAndToken}>Create Meeting</button>
+            </div>
         </div>
     )
 }

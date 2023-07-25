@@ -126,7 +126,7 @@ export function Feedback() {
     return (
         <>
             <h1 className={FeedbackCss.feedbackHeader}><FeedbackIcon sx={{ fontSize: '1.9rem' }} /> Feedback</h1>
-            <h3>Share your comments/suggestions/opinions/reports to help us improve StudyFil</h3>
+            <h3>Share your comments/suggestions/opinions to help us improve StudyFil</h3>
             <FeedbackForm setSeed={setSeed} />
             {feedbacksArray && feedbacksArray}
         </>

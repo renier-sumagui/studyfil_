@@ -71,17 +71,17 @@ export const SIDEBAR_LINKS2 = [
         outlined: <SettingsOutlinedIcon />
     },
     {
-        name: "Report Abuse",
-        id: "abuse",
-        path: "/abuse",
-        solid: <ReportIcon />, 
-        outlined: <ReportGmailerrorredIcon />
-    },
-    {
         name: "Feedback",
         id: "feedback",
         path: "/feedback",
         solid: <FeedbackIcon />,
         outlined: <FeedbackOutlinedIcon />
+    },
+    {
+        name: "Report Abuse",
+        id: "abuse",
+        path: "/abuse",
+        solid: <ReportIcon />, 
+        outlined: <ReportGmailerrorredIcon />
     },
 ];
