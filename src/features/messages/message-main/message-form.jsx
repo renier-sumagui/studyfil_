@@ -19,7 +19,7 @@ export function MessageForm() {
         e.preventDefault();
         const filteredMessage = await profanityFilter(message, words);
         const initials = getNameInitials(user.first_name + ' ' + user.last_name);
-        Axios.post('https://studyfil-api.onrender.com/messages/send', { userId: user.id, groupId: group.id, content: filteredMessage }, { withCredentials: true });
+        await Axios.post('https://studyfil-api.onrender.com/messages/send', { userId: user.id, groupId: group.id, content: filteredMessage }, { withCredentials: true });
         socket.emit('send_message', { userName: user.username, userID: user.id, groupID: group.id, message: filteredMessage, initials: initials });
         setMessage('');
     }
