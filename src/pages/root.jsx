@@ -4,7 +4,7 @@ import { HomeHeader } from 'features/home';
 import { SideBar, Body, MainSection } from 'layouts/';
 import { Messages } from 'features/messages';
 import { UserContextProvider } from 'context/';
-
+import { WordsContextProvider } from 'context/';
 
 import { useNavigate, Outlet } from 'react-router-dom';
 
@@ -32,13 +32,15 @@ export function Root() {
         return (
             <>
                 <UserContextProvider userDetails={user}>
-                    <HomeHeader />
-                    <Body>
-                        <SideBar />
-                        <MainSection>
-                            <Outlet />
-                        </MainSection>
-                    </Body>
+                    <WordsContextProvider>
+                        <HomeHeader />
+                        <Body>
+                            <SideBar />
+                            <MainSection>
+                                <Outlet />
+                            </MainSection>
+                        </Body>
+                    </WordsContextProvider>
                 </UserContextProvider>
             </>
         )

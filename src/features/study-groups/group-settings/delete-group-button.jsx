@@ -2,24 +2,27 @@ import { useRef, useState } from 'react';
 import { GroupForumCss } from "stylesheets/group-forum";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AbsoluteCircular } from 'features/loading';
 
 function ConfirmDeleteModal({ modalRef, closeModal, groupId }) {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     async function handleDelete() {
-        setDisabled(true);
+        setLoading(true);
         await Axios.delete(`https://studyfil-api.onrender.com/groups/delete/${groupId}`);
         navigate('/groups/joined');
-        setDisabled(false);
+        setLoading(false);
     }
 
     return (
-        <dialog ref={modalRef}>
+        <dialog ref={modalRef} style={{ position: 'relative' }}>
+            {loading && <AbsoluteCircular />}
             <p>Are you sure to delete this group?</p>
             <div className="flex justifySpaceBetween" style={{ marginTop: '20px' }}>
-                <button className="buttonDanger" onClick={handleDelete} disabled={disabled}>Yes</button>
-                <button className="buttonSuccess" onClick={() => closeModal()} disabled={disabled}>No</button>
+                <button className="buttonDanger" onClick={handleDelete}>Yes</button>
+                <button className="buttonSuccess" onClick={() => closeModal()}>No</button>
             </div>
         </dialog>
     )

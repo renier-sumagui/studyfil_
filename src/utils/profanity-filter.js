@@ -1,11 +1,13 @@
 import Axios from 'axios';
+import { useWordsContext } from 'context/';
 
-async function profanityFilter(string) {
+async function profanityFilter(string, words) {
     const reEscape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const special = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    const response = await Axios.get('https://studyfil-api.onrender.com/messages/words/inappropriate');
+    // const response = await Axios.get('http://localhost:8000/messages/words/inappropriate');
     /* Define the list of bad words */
-    const badWords = response.data.words;
+
+    const badWords = words;
 
     const badWordsRE = new RegExp(badWords.map(reEscape).join('|'), 'gi');
 

@@ -7,15 +7,17 @@ import { socket } from './socket.js';
 import { profanityFilter } from 'src/utils/';
 import { getNameInitials } from 'src/utils/';
 import SendIcon from '@mui/icons-material/Send';
+import { useWordsContext } from 'context/';
 
 export function MessageForm() {
     const { group } = useMessageContext();
     const { user } = useUserContext();
     const [message, setMessage] = useState('');
+    const { words } = useWordsContext();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const filteredMessage = await profanityFilter(message);
+        const filteredMessage = await profanityFilter(message, words);
         const initials = getNameInitials(user.first_name + ' ' + user.last_name);
         Axios.post('https://studyfil-api.onrender.com/messages/send', { userId: user.id, groupId: group.id, content: filteredMessage }, { withCredentials: true });
         socket.emit('send_message', { userName: user.username, userID: user.id, groupID: group.id, message: filteredMessage, initials: initials });

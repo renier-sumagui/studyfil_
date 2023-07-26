@@ -66,7 +66,7 @@
 /* ----------------------- Messages Section Header ----------------------- */
 .messageHeader {
     height: 40px;
-    background: #6495ED;
+    background: var(--primary-color);
     padding: 0 10px;
 }
 .groupInfo {
@@ -153,7 +153,7 @@
     height: 40px;
     position: absolute;
     bottom: 0;
-    background: cornflowerblue;
+    background: var(--primary-color);
     padding: 5px;
     justify-content: center;
 }
