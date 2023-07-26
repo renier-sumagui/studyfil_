@@ -6,6 +6,7 @@ import { useUserContext } from 'context/';
 import { profanityFilter } from 'src/utils/';
 import { getNameInitials } from 'src/utils';
 import { AbsoluteCircular } from 'features/loading';
+import { useWordsContext } from 'context/';
 
 export function ReplyForm({ commentId, setSeed, groupId }) {
     const { user } = useUserContext();
@@ -13,10 +14,11 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
     const inputRef = useRef(null);
     const [initials, setInitials] = useState();
     const [loading, setLoading] = useState(false);
+    const { words } = useWordsContext();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const filteredReply = await profanityFilter(inputValue);
+        const filteredReply = await profanityFilter(inputValue, words);
         setLoading(true);
         await submitReply(user.id, filteredReply, commentId, groupId);
         setInputValue('');

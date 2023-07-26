@@ -6,6 +6,7 @@ import { useUserContext } from 'context/';
 import { profanityFilter } from 'src/utils/';
 import { BadWordsAlert } from 'features/alerts/';
 import { AbsoluteCircular } from 'features/loading';
+import { useWordsContext } from 'context/';
 
 export function PostQuestionForm({ handleClose }) {
     const { group } = useGroupContext();
@@ -13,11 +14,11 @@ export function PostQuestionForm({ handleClose }) {
     const [question, setQuestion] = useState('');
     const [alert, setAlert] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { words } = useWordsContext();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        
-        const filteredQuestion = await profanityFilter(question);
+        const filteredQuestion = await profanityFilter(question, words);
         if (filteredQuestion !== question) {
             setAlert(true);
             setTimeout(() => setAlert(false), 2000);
