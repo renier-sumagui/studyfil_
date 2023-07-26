@@ -66,7 +66,7 @@
 /* ----------------------- Messages Section Header ----------------------- */
 .messageHeader {
     height: 40px;
-    background: rgba(0, 0, 255, 0.4);
+    background: #6495ED;
     padding: 0 10px;
 }
 .groupInfo {
