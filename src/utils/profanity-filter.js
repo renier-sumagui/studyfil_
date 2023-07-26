@@ -19,7 +19,6 @@ async function profanityFilter(string, words) {
     for (let i = 0; i < stringArray.length; i++) {
         const word = stringArray[i].toLowerCase();
         for (let key in badWords) {
-            console.log(special.test(word));
             if (special.test(word)) {
                 if (word.match(badWords[key])) {
                     badWordsOnSentence.push(badWords[key]);
@@ -42,7 +41,6 @@ async function profanityFilter(string, words) {
         return asterisk;
     });
     
-    console.log(newString);
     if (newString !== string) {
         return newString;
     } else {

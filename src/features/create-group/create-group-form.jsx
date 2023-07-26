@@ -8,6 +8,7 @@ import submitNewTopic from './submit-new-topic.js';
 import { profanityFilter } from 'src/utils/';
 import { BadWordsAlert } from 'features/alerts/';
 import { AbsoluteCircular } from 'features/loading';
+import { useWordsContext } from 'context/';
 import Axios from 'axios';
 
 export function CreateGroupForm({ handleClose, reload }) {
@@ -17,6 +18,7 @@ export function CreateGroupForm({ handleClose, reload }) {
     const [topic, setTopic] = useState('');
     const [groupName, setGroupName] = useState('');
     const [memberCount, setMemberCount] = useState('');
+    const { words } = useWordsContext();
 
     const [theory, setTheory] = useState(false);
     const [facts, setFacts] = useState(false);
@@ -51,8 +53,8 @@ export function CreateGroupForm({ handleClose, reload }) {
         setLoading(true);
         const allTopics = await useTopics();
 
-        const filteredGroupName = await profanityFilter(groupName);
-        const filteredTopic = await profanityFilter(topic);
+        const filteredGroupName = await profanityFilter(groupName, words);
+        const filteredTopic = await profanityFilter(topic, words);
         if (filteredGroupName !== groupName || filteredTopic !== topic) {
             setAlert(true);
             setTimeout(() => setAlert(false), 2000)
@@ -61,7 +63,7 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         if (openChecklist) {
             setOpenChecklist(false);
-            const filteredTopic = await profanityFilter(groupName);
+            const filteredTopic = await profanityFilter(groupName, words);
             await submitNewTopic(theory, facts, formal, topic);
             return;
         }
@@ -146,7 +148,9 @@ export function CreateGroupForm({ handleClose, reload }) {
 
     function handleTopicClick(topicName) {
         setTopic(topicName);
-        valueRef.current.focus();
+        const groupName = document.getElementById('group-name');
+        // valueRef.current.focus();
+        setTimeout(() => groupName.focus(), 0);
     }
 
     function handleOpen(e) {
@@ -171,6 +175,7 @@ export function CreateGroupForm({ handleClose, reload }) {
                         required  
                         type="text" 
                         value={topic} 
+                        id="group-name"
                         onChange={(e) => setTopic(e.target.value)} 
                         onClick={handleOpen} placeholder="e.g. Baking"
                         onBlur={() => setOpen(false)}
