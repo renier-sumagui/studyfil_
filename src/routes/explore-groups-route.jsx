@@ -168,7 +168,6 @@ function ExploreGroupsRoute() {
             } else {
                 setLoadUserBased(false);
                 const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
-                console.log(topicBasedGroups);
                 if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                     const groupIds = getGroupIds(topicBasedGroups);
                     setGroupIds(prev => [...prev, ...groupIds]);
@@ -204,7 +203,6 @@ function ExploreGroupsRoute() {
 
     useEffect(() => {
         const main = document.getElementById("main-section");
-        console.log(main);
         main.addEventListener('scroll', handleScroll);
         return () => {
             main.removeEventListener('scroll', handleScroll);

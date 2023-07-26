@@ -13,17 +13,23 @@
     border-radius: 10px;
 }
 
-.terms > ol > li:before {
-    font-size: 1.2em;
+.terms {
+    text-align: justify;
+    padding-bottom: 10px;
+}
+.terms span {
     font-weight: bold;
 }
-
+.terms > ol > li:before {
+    /* font-size: 1.2em; */
+    font-weight: bold;
+}
 .terms ol {
     counter-reset: item;
     padding: 0;
 }
 .terms > ol > li {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .terms ol ol {
     padding-left: 2rem;
@@ -48,4 +54,21 @@
 
 .block {
     border: 1px solid red;
+}
+.indentedOrderedList > li {
+    margin-left: 50px;
+}
+.heading2 {
+    width: 100%;
+    text-align: center;
+}
+.link {
+    color: var(--blue);
+}
+.link:hover {
+    text-decoration: underline;
+}
+.paragraph {
+    display: block !important;
+    margin-top: 5px;
 }

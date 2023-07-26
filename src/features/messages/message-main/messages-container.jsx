@@ -24,7 +24,6 @@ export function MessagesContainer() {
         socket.emit('join_room', { userID: user.id, userName: user.username, groupID: group.id });
         (async function() {
             const response = await useMessages(group.id);
-            console.log('again')
             if (response.hasMessages) {
                 const messages = response.messages;
                 prevRef.current = messages[messages.length - 1].id;
@@ -74,13 +73,11 @@ export function MessagesContainer() {
 
     useEffect(() => {
         socket.on('receive_message', (data) => {
-            console.log(data.initials);
             if (data.userID == user.id) {
                 prevRef.current = user.id;
                 setMessagesArray(state => [...state, <p key={ state.length + 1 } className={ MessagesCss.currentUser }>{ data.message }</p>]);
                 prevRef.current = data.userID;
             } else {
-                console.log('different user')
                 if (data.userID == prevRef.current) {
                     setMessagesArray(state => [...state, <p key={ state.length + 1 } className={ MessagesCss.messageContent }>{ data.message }</p>])
                     prevRef.current = data.userID;
@@ -92,11 +89,11 @@ export function MessagesContainer() {
         })
 
         socket.on('new_meeting_room', (data) => {
-            console.log(data);
+            // console.log(data);
         })
 
         socket.on('joined', (data) => {
-            console.log(data);
+            // console.log(data);
         });
 
         return () => {

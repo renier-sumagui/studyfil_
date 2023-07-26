@@ -19,8 +19,6 @@ export function PostQuestionForm({ handleClose }) {
         
         const filteredQuestion = await profanityFilter(question);
         if (filteredQuestion !== question) {
-            console.log(question);
-            console.log(filteredQuestion);
             setAlert(true);
             setTimeout(() => setAlert(false), 2000);
             return;

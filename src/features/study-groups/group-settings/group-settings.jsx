@@ -26,7 +26,6 @@ export function GroupSettings() {
     useEffect(() => {
         (async function() {
             let response = await Axios.get(`https://studyfil-api.onrender.com/groups/get/${groupId}`);
-            console.log(response.data.group);
             setGroup({...response.data.group, created_at: getTimePassed(response.data.group.created_at)});
         })();
     }, []);

@@ -172,3 +172,6 @@ dialog {
     background: var(--blue);
 }
 .buttonDanger:hover, .dangerIcon { background: var(--danger); }
+.bold { font-weight: bolder; }
+.indent { text-indent: 30px; }
+.textAlignCenter { text-align: center; }

@@ -41,10 +41,6 @@ export function ChosenTopics({ chosenTopics, setChosenTopics }) {
         }
     }
 
-    useEffect(() => {
-        console.log(chosenTopics);
-    }, [chosenTopics])
-
     return (
         <>
             <Typography variant="h6">Your chosen topics:</Typography>

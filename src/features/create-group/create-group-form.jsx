@@ -85,7 +85,6 @@ export function CreateGroupForm({ handleClose, reload }) {
         if (open) {
             (async function() {
                 const response = await Axios.get(`https://studyfil-api.onrender.com/topics/all`);
-                console.log(response.data.topics);
                 setTopics(response.data.topics);
                 setSuggestions(response.data.topics.map((topic) => {
                     return <p 
