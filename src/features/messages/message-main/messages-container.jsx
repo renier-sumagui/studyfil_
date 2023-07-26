@@ -89,7 +89,7 @@ export function MessagesContainer() {
                 const messages = await getMessages(user, response, prevRef);
                 setMessagesArray(messages);
             }
-            scrollToBottom(chatContainerRef);
+            setTimeout(() => scrollToBottom(chatContainerRef), 100);
         })();
     }, [group])
 

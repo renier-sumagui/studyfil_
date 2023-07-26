@@ -129,7 +129,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <LocalizationProvider dateAdapter={AdapterDayjs}>
         <SideLinkContextProvider>
             <RouterProvider router={router}>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Circular />}>
                     {router}
                 </Suspense>
             </RouterProvider>
