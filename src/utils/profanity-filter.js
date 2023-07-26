@@ -1,6 +1,3 @@
-import Axios from 'axios';
-import { useWordsContext } from 'context/';
-
 async function profanityFilter(string, words) {
     const reEscape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const special = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
