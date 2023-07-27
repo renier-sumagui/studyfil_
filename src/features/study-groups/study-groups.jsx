@@ -12,8 +12,6 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
     setStudyGroups((prevGroups) => prevGroups.filter((group) => group.key !== key));
   }
 
-  console.log(groups);
-
   return (
     <div className={StudyGroupsCss.studyGroups}>
       <h2>{heading}</h2>
@@ -41,3 +39,19 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

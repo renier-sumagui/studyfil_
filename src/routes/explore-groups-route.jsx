@@ -126,11 +126,13 @@ function ExploreGroupsRoute() {
         const main = document.getElementById("main-section");
         (async function() {
             setLoading(true);
+            let tempIds = [];
             const userBasedGroups = await useDiscoverGroups(user.id, page);
+            console.log(userBasedGroups.length);
             /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased` to false */
-            if (userBasedGroups.length > 0) {   
+            if (userBasedGroups.length > 0) {
                 const groupIds = getGroupIds(userBasedGroups);
-                setGroupIds(prev => [...prev, ...groupIds]);
+                tempIds = [...tempIds, ...groupIds];
                 setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 setPage(prev => prev + 1);
                 if (userBasedGroups.length < 12) {
@@ -139,7 +141,7 @@ function ExploreGroupsRoute() {
                     const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
                     if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                         const groupIds = getGroupIds(topicBasedGroups);
-                        setGroupIds(prev => [...prev, ...groupIds]);
+                        tempIds = [...tempIds, ...groupIds];
                         setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                         if (topicBasedGroups.length < 12) {
@@ -170,7 +172,7 @@ function ExploreGroupsRoute() {
                 const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
                 if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                     const groupIds = getGroupIds(topicBasedGroups);
-                    setGroupIds(prev => [...prev, ...groupIds]);
+                    tempIds = [...tempIds, ...groupIds];
                     setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     setPage(prev => prev + 1);
                     if (topicBasedGroups.length < 12) {
@@ -195,6 +197,7 @@ function ExploreGroupsRoute() {
                     }
                 }
             }
+            setGroupIds(tempIds);
             setLoading(false);
         })();
 
