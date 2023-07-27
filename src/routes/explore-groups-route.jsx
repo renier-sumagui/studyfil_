@@ -147,7 +147,7 @@ function ExploreGroupsRoute() {
                         if (topicBasedGroups.length < 12) {
                             setLoadTopicBased(false);
                             setPage(1);
-                            const groups = await useMoreGroups(user.id, groupIds, page);
+                            const groups = await useMoreGroups(user.id, tempIds, page);
                             if (groups.length > 0) {
                                 const groupIds = getGroupIds(groups);
                                 setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
@@ -158,7 +158,7 @@ function ExploreGroupsRoute() {
                         }
                     } else { /* Else get all groups */
                         setLoadTopicBased(false);
-                        const groups = await useMoreGroups(user.id, groupIds, page);
+                        const groups = await useMoreGroups(user.id, tempIds, page);
                         if (groups.length > 0) {
                             setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
