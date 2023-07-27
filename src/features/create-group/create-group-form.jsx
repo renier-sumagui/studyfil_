@@ -176,6 +176,7 @@ export function CreateGroupForm({ handleClose, reload }) {
                         type="text" 
                         value={topic} 
                         id="group-name"
+                        autoComplete="off"
                         onChange={(e) => setTopic(e.target.value)} 
                         onClick={handleOpen} placeholder="e.g. Baking"
                         onBlur={() => setOpen(false)}
