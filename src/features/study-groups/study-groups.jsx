@@ -12,6 +12,8 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
     setStudyGroups((prevGroups) => prevGroups.filter((group) => group.key !== key));
   }
 
+  console.log(groups);
+
   return (
     <div className={StudyGroupsCss.studyGroups}>
       <h2>{heading}</h2>
@@ -22,9 +24,8 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
               groupId={group.id}
               key={group.key} 
               groupName={group.group_name}
-              ownerName={group.username}
               topic={group.topic_name}
-              owner={group.username}
+              owner={group.admin_username}
               memberCount={group.member_count}
               memberLimit={group.member_limit}
               isAcademic={group.is_academic}
