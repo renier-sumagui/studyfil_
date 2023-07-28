@@ -11,7 +11,7 @@ export function useTopicsSettingsContext() {
 
 export function TopicsSettingsContextProvider({ children }) {
     const { user } = useUserContext();
-    const [interestedTopics, setInterestedTopics] = useState();
+    const [interestedTopics, setInterestedTopics] = useState({});
     const [topicsObject, setTopicsObject] = useState();
     const [seed, setSeed] = useState(1);
 

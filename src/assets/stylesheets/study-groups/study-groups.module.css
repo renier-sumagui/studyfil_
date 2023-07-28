@@ -64,13 +64,18 @@ dialog::backdrop {
 .createGroupForm > label > input, .createGroupForm select {
     font-size: 18px;
 }
-.createGroupForm > label > input {
+.createGroupForm > label > input, .description {
     width: 100%;
     border: 1px solid var(--blue);
     padding: 5px;
     margin-top: 2px;
 }
-.createGroupForm > label > input:focus, .createGroupForm select:focus {
+.description {
+    resize: none;
+    display: block;
+    height: 100px;
+}
+.createGroupForm > label > input:focus, .createGroupForm select:focus, .description:focus {
     outline: 2px solid var(--blue);
 }
 .createBtn, .cancelBtn, .createGroupBtn, .createGroupForm label {

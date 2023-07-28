@@ -17,6 +17,7 @@ export function CreateGroupForm({ handleClose, reload }) {
     const [allTopics, setAllTopics] = useState();
     const [topic, setTopic] = useState('');
     const [groupName, setGroupName] = useState('');
+    const [description, setDescription] =useState('');
     const [memberCount, setMemberCount] = useState('');
     const { words } = useWordsContext();
 
@@ -49,15 +50,17 @@ export function CreateGroupForm({ handleClose, reload }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        
         setLoading(true);
+        
         const allTopics = await useTopics();
 
         const filteredGroupName = await profanityFilter(groupName, words);
         const filteredTopic = await profanityFilter(topic, words);
+
         if (filteredGroupName !== groupName || filteredTopic !== topic) {
             setAlert(true);
             setTimeout(() => setAlert(false), 2000)
+            setLoading(true);
             return;
         }
 
@@ -65,6 +68,7 @@ export function CreateGroupForm({ handleClose, reload }) {
             setOpenChecklist(false);
             const filteredTopic = await profanityFilter(groupName, words);
             await submitNewTopic(theory, facts, formal, topic);
+            setLoading(true);
             return;
         }
 
@@ -81,6 +85,18 @@ export function CreateGroupForm({ handleClose, reload }) {
             setOpenChecklist(true);
         }
         setLoading(false);
+    }
+
+    function handleTopicClick(topicName) {
+        setTopic(topicName);
+        const groupName = document.getElementById('group-name');
+        // valueRef.current.focus();
+        setTimeout(() => groupName.focus(), 0);
+    }
+
+    function handleOpen(e) {
+        e.stopPropagation();
+        setOpen(true)
     }
 
     useEffect(() => {
@@ -146,18 +162,6 @@ export function CreateGroupForm({ handleClose, reload }) {
         })();
     }, [topic])
 
-    function handleTopicClick(topicName) {
-        setTopic(topicName);
-        const groupName = document.getElementById('group-name');
-        // valueRef.current.focus();
-        setTimeout(() => groupName.focus(), 0);
-    }
-
-    function handleOpen(e) {
-        e.stopPropagation();
-        setOpen(true)
-    }
-
     return (
         <>
             {alert && <BadWordsAlert />}
@@ -190,6 +194,16 @@ export function CreateGroupForm({ handleClose, reload }) {
                 <label>
                     Group name
                     <input type="text" required value={groupName} onChange={(e) => setGroupName(e.target.value)}  />
+                </label>
+                <label for="description">
+                    Description
+                    <textarea 
+                        value={description} 
+                        id="description" 
+                        className={StudyGroupsCss.description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    >
+                    </textarea>
                 </label>
                 {openChecklist && checklist}
                 <label>
