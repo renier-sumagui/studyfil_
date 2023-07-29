@@ -60,7 +60,7 @@ export function CreateGroupForm({ handleClose, reload }) {
         if (filteredGroupName !== groupName || filteredTopic !== topic) {
             setAlert(true);
             setTimeout(() => setAlert(false), 2000)
-            setLoading(true);
+            setLoading(false);
             return;
         }
 
@@ -68,13 +68,14 @@ export function CreateGroupForm({ handleClose, reload }) {
             setOpenChecklist(false);
             const filteredTopic = await profanityFilter(groupName, words);
             await submitNewTopic(theory, facts, formal, topic);
-            setLoading(true);
+            setLoading(false);
             return;
         }
 
         if (allTopics[topic.toLowerCase()]) {   /* this checks if the entered word is in the topics */
             setOpenChecklist(false);
             let response = await submitGroup(user.id, groupName, allTopics[`${topic.toLocaleLowerCase()}`].id, memberCount);
+            setLoading(false);
             handleClose(e);
             setSuggestedTopic('');
             setTopic('');
@@ -82,9 +83,9 @@ export function CreateGroupForm({ handleClose, reload }) {
             setMemberCount('');
             reload();
         } else {    /* if the entered word isn't found, open the checklist to add the new topic */
+            setLoading(false);
             setOpenChecklist(true);
         }
-        setLoading(false);
     }
 
     function handleTopicClick(topicName) {
