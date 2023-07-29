@@ -10,7 +10,8 @@ export function AbsoluteCircular() {
                 height: '100%', 
                 top: '0', 
                 left: '0', 
-                zIndex: 9
+                zIndex: 9,
+                background: 'rgba(170, 170, 170, 0.2)'
             }}
         >
             <CircularProgress />

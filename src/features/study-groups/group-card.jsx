@@ -5,8 +5,9 @@ import { joinGroup } from './join-group.js';
 import { useUserContext } from 'context/';
 import { AbsoluteCircular } from 'features/loading';
 import GroupIcon from '@mui/icons-material/Group';
+import StarRateIcon from '@mui/icons-material/StarRate';
 
-export function GroupCard({ groupId, groupName, topic, owner, memberLimit, memberCount, isAcademic, onJoinClick }) {
+export function GroupCard({ groupId, groupName, topic, owner, memberLimit, memberCount, isAcademic, rating, onJoinClick }) {
     const { user } = useUserContext();
     const [loading, setLoading] = useState(false);
 
@@ -28,6 +29,7 @@ export function GroupCard({ groupId, groupName, topic, owner, memberLimit, membe
             <p className="fontSizeSmall">Type: <span className={classnames(GroupCardCss.ellipsis, 'verticalAlignBaseline fontSizeSmall')}>{isAcademic ? 'Academic' : 'Non-academic'}</span></p>
             <p className="fontSizeSmall">Owner: <span className={classnames(GroupCardCss.ellipsis, 'verticalAlignBaseline fontSizeSmall')}>{owner}</span></p>
             <p className="fontSizeSmall"><GroupIcon fontSize='small'  sx={{ verticalAlign: 'bottom' }} /> {memberCount}/{memberLimit}</p>
+            <p className="fontSizeSmall"><StarRateIcon fontSize='small' sx={{ verticalAlign: 'bottom' }} />{rating ? rating : 'N/A'}</p>
             <button className={GroupCardCss.joinBtn} onClick={handleJoin}>Join Group</button>
         </div>
     )

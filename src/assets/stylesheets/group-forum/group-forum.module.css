@@ -30,7 +30,7 @@
 .avatar, .submitPostBtn {
     background: var(--primary-color);
 }
-.avatar, .centerContent, .settingsBtn, .postQuestionForm, .arrows button {
+.avatar, .centerContent, .settingsBtn, .postQuestionForm, .arrows button, .ratingContainer {
     display: flex;
 }
 .avatar, .centerContent {
@@ -297,4 +297,32 @@
 .dangerBtn, .reportCount {
     font-size: 14px;
     border-radius: 20px;
+}
+.ratingContainer {
+    position: fixed;
+    left: 45%;
+    bottom: 10px;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--light-gray);
+    border-radius: 50px;
+    padding: 0 20px;
+    box-shadow: 0 0 10px 0 var(--light-gray);
+    overflow: hidden;
+}
+.ratingContainer button {
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 0;
+    background: none;
+    border: 0;
+    transition: all 200ms;
+}
+.ratingContainer button:active {
+    transform: scale(0.7)
+}
+.ratingContainer button * {
+    vertical-align: middle;
 }

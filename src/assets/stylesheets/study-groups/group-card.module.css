@@ -11,7 +11,7 @@
     display: inline-block;
 }
 .groupCard {
-    height: 135px;
+    height: 155px;
     width: 30%;
     padding: 10px;
     border: 1px solid var(--blue);

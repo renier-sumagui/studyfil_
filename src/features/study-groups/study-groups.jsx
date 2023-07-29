@@ -27,6 +27,7 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
               memberCount={group.member_count}
               memberLimit={group.member_limit}
               isAcademic={group.is_academic}
+              rating={group.rating}
               setSeed={setSeed}
               seed={seed}
               onJoinClick={() => updateStudyGroups(group.key)} 
@@ -39,19 +40,3 @@ export function StudyGroups({ heading, groups, seed, setSeed, setStudyGroups }) 
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

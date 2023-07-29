@@ -22,6 +22,7 @@ export function JoinedStudyGroups({ heading, groups }) {
             let response = await useJoinedGroups(user.id);
             if (response.data.hasGroups) {
                 const groups = response.data.groups.map((group) => {
+                    console.log(group);
                     return <JoinedGroupCard 
                                 key={group.id} 
                                 groupId={group.id} 
@@ -29,8 +30,9 @@ export function JoinedStudyGroups({ heading, groups }) {
                                 topic={group.topic_name} 
                                 owner={group.username} 
                                 memberCount={group.member_count}
-                                memberLimit={group.member_limit} 
+                                memberLimit={group.member_limit}
                                 isAcademic={group.is_academic}
+                                rating={group.rating}
                             />
                 });
                 setJoinedGroups(groups);
