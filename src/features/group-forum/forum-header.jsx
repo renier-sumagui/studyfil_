@@ -23,9 +23,12 @@ export function ForumHeader() {
             </div>
             <h1 className={GroupForumCss.forumGroupTitle}>{group.group_name}</h1>
             <div className="flex alignCenter" style={{gap: "3px"}}>
-                <ForumIcon />
-                <h2>{group.topic_name}</h2>
+                <ForumIcon fontSize="medium" />
+                <h3>{group.topic_name}</h3>
             </div>
+            {group.description  ? 
+            <p style={{ marginTop: '10px' }}>{group.description}</p> :
+            <p style={{ marginTop: '10px', color: '#808080' }}><strong>Study group has no description.</strong></p>}
         </div>
     )
 }

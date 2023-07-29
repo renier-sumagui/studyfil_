@@ -56,8 +56,9 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         const filteredGroupName = await profanityFilter(groupName, words);
         const filteredTopic = await profanityFilter(topic, words);
+        const filteredDescription = await profanityFilter(description, words);
 
-        if (filteredGroupName !== groupName || filteredTopic !== topic) {
+        if (filteredGroupName !== groupName || filteredTopic !== topic || filteredDescription !== description) {
             setAlert(true);
             setTimeout(() => setAlert(false), 2000)
             setLoading(false);
@@ -74,7 +75,7 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         if (allTopics[topic.toLowerCase()]) {   /* this checks if the entered word is in the topics */
             setOpenChecklist(false);
-            let response = await submitGroup(user.id, groupName, allTopics[`${topic.toLocaleLowerCase()}`].id, memberCount);
+            let response = await submitGroup(user.id, groupName, description, allTopics[`${topic.toLocaleLowerCase()}`].id, memberCount);
             setLoading(false);
             handleClose(e);
             setSuggestedTopic('');
@@ -203,6 +204,7 @@ export function CreateGroupForm({ handleClose, reload }) {
                         id="description" 
                         className={StudyGroupsCss.description}
                         onChange={(e) => setDescription(e.target.value)}
+                        required
                     >
                     </textarea>
                 </label>

@@ -15,7 +15,7 @@ export function GroupContextProvider({ groupId, children }) {
             const response = await Axios.get(`https://studyfil-api.onrender.com/groups/get/${groupId}`);
             setGroup(response.data.group);
         })();
-    }, [])
+    }, []);
 
     return (
         <GroupContext.Provider value={{ group }}>
