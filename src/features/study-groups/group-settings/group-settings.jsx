@@ -130,7 +130,7 @@ export function GroupSettings() {
                         <p><span><CalendarMonthIcon /></span> Created <span>{group.created_at}</span></p>
                     </div>
                     <Members adminId={group.admin_id} groupId={group.id}/>
-                    <Rating groupId={groupId} userId={user.id} />
+                    {group.admin_id === user.id ? null : <Rating groupId={groupId} userId={user.id} />}
                 </>
             ) : null }
             {loading && <Circular />}

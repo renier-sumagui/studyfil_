@@ -15,8 +15,8 @@ function SearchContainer({ heading, keyword, sortByRef, setChange, children }) {
             <h2>{heading}</h2>
             <h2 style={{ color: '#356599', fontSize: '2em' }}>{keyword}</h2>
             <div>
-                <label for="sort">Sort by:</label>
-                <select ref={sortByRef} id="sort" onChange={() => setChange(Math.random())}>
+                <label for="sort">Sort by: </label>
+                <select className={StudyGroupsCss.sort} ref={sortByRef} id="sort" onChange={() => setChange(Math.random())}>
                     <option value="descending">Ratings (highest - lowest)</option>
                     <option value="ascending">Ratings (lowest - highest)</option>
                 </select>
