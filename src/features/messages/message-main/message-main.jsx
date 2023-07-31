@@ -15,18 +15,20 @@ export function MessageMain() {
     const [group, setGroup] = useState();
 
     useEffect(() => {
+        let controller = new AbortController();
         (async function() {
             const response = await Axios.get(`https://studyfil-api.onrender.com/groups/get/${groupId}`);
             setGroup(response.data.group);
         })();
+        return () => controller.abort();
     }, [groupId])
 
     return (
         <MessageContext.Provider value={{ group }}>
             <div className={MessagesCss.messageMain}>
-                { group ? 
+                {group ? 
                 <>
-                    <MessageHeader />
+                    <MessageHeader group={group} />
                     <MessagesContainer />
                     <MessageForm />
                 </> : null}

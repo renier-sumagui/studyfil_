@@ -68,6 +68,7 @@
     height: 40px;
     background: var(--primary-color);
     padding: 0 10px;
+    position: relative;
 }
 .groupInfo {
     height: 80%;
@@ -104,13 +105,15 @@
     height: 20px;
 }
 /* ----------------------- Messages Container ----------------------- */
+.skeletonWrapper, .messagesContainer {
+    display: flex;
+    flex-direction: column;
+}
 .messagesContainer {
     position: absolute;
     bottom: 40px;
     top: 40px;
-    padding: 5px 10px;
-    display: flex;
-    flex-direction: column;
+    padding: 5px 10px 5px 10px;
 }
 /* ----------------------- Message Box ----------------------- */
 .userInfoContainer {
@@ -118,7 +121,7 @@
     width: fit-content;
     margin-bottom: 2px;
 }
-.userImg {
+.userImg, .avatarSkeleton {
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -128,7 +131,13 @@
     align-items: center;
     overflow: hiddne;
     font-weight: 500;
-    font-size: 11px;
+    font-size: 10px;
+    position: relative;
+    background: var(--primary-color);
+}
+.avatarSkeleton { 
+    border: none; 
+    background: none;
 }
 .userName {
     font-size: 14px;
@@ -147,6 +156,7 @@
     /* margin: 10px 0; */
     align-self: flex-end;
     composes: messageContent;
+    margin-top: 5px;
 }
 /* ----------------------- Message Form ----------------------- */
 .messageForm {
@@ -160,4 +170,8 @@
 .messageInput {
     width: 80%;
     font-size: 18px;
+}
+.skeletonWrapper {
+    width: 100%;
+    height: 100%;
 }

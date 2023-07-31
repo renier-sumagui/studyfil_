@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { MessagesCss } from 'stylesheets/messages';
 import { MessageBox } from 'features/messages';
@@ -8,6 +9,7 @@ import { useUserContext } from 'context/';
 import { useMessageContext } from './message-main.jsx';
 import { socket } from './socket';
 import { getNameInitials } from 'src/utils';
+import { MessageSkeleton } from './message-skeleton.jsx';
 
 function scrollToBottom(containerRef) {       
     if (containerRef.current !== null) {
@@ -15,7 +17,7 @@ function scrollToBottom(containerRef) {
     }
 }
 
-async function getMessages(user, response, prevRef) {
+function getMessages(user, response, prevRef) {
     const messages = response.messages;
     prevRef.current = messages[messages.length - 1].id;
     let messageComponents = [];
@@ -58,7 +60,7 @@ export function MessagesContainer() {
     const prevRef = useRef(null);
     const chatContainerRef = useRef(null);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(1);
+    const [initialLoading, setInitialLoading] = useState(false);
 
     const [messagesArray, setMessagesArray] = useState([]);
     const [messagesReceived, setMessagesReceived] = useState();
@@ -82,16 +84,21 @@ export function MessagesContainer() {
     useEffect(() => {
         socket.emit('join_room', { userID: user.id, userName: user.username, groupID: group.id });
         setPage(1);
+        setMessagesArray([]);
+        const axiosRequest = Axios.CancelToken.source();
         (async function() {
-            const response = await useMessages(group.id, 1);
-            if (response.hasMessages) {
+            setInitialLoading(true);
+            const response = await Axios.get(`https://studyfil-api.onrender.com/messages/${groupId}?page=${1}`, { cancelToken: axiosRequest.token });
+            if (response.data.hasMessages) {
                 setPage(prev => prev + 1);
-                const messages = await getMessages(user, response, prevRef);
+                const messages = getMessages(user, response.data, prevRef);
                 setMessagesArray(messages);
             }
+            setInitialLoading(false);
             setTimeout(() => scrollToBottom(chatContainerRef), 100);
         })();
-    }, [group])
+        return () => axiosRequest.cancel();
+    }, [groupId])
 
     useEffect(() => {
         const main = document.getElementById("message-container");
@@ -112,11 +119,11 @@ export function MessagesContainer() {
                     prevRef.current = data.userID;
                 }
             }
-        })
+        });
 
         socket.on('new_meeting_room', (data) => {
             // console.log(data);
-        })
+        });
 
         socket.on('joined', (data) => {
             // console.log(data);
@@ -128,7 +135,7 @@ export function MessagesContainer() {
             socket.off('joined');
             main.removeEventListener('scroll', handleScroll);
         }
-    }, [group]);
+    }, [groupId]);
 
     useEffect(() => {
         messagesArrayRef.current = messagesArray;
@@ -141,7 +148,8 @@ export function MessagesContainer() {
 
     return (
         <div id="message-container" className={MessagesCss.messagesContainer} ref={chatContainerRef}>
-            {messagesArray.length > 0 ? messagesArray.map((message) => message) : null}
+            {!initialLoading ? messagesArray.map((message) => message) : <MessageSkeleton />}
+            {/* {initialLoad && <MessageSkeleton />} */}
         </div>
     )
 }

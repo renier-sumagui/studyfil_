@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MessagesCss } from 'stylesheets/messages';
 import { GroupLink } from 'features/messages';
-import { useMessageContext } from 'features/messages';
+import Axios from 'axios';
 import { useJoinedGroups } from 'features/study-groups';
 import { useUserContext } from 'context/';
 import { AbsoluteCircular } from 'features/loading';
@@ -12,8 +12,10 @@ export function MessageSidebar() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const axiosRequest = Axios.CancelToken.source();
         (async function() {
-            const response = await useJoinedGroups(user.id);
+            const response = await Axios.post('https://studyfil-api.onrender.com/messages/latest', { userId: user.id }, { withCredentials: true });
+            console.log(response);
             setLoading(false);
             if (response.data.hasGroups) {
                 setGroups(response.data.groups.map((group) => {

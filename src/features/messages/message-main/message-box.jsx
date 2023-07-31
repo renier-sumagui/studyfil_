@@ -1,8 +1,7 @@
 import { MessagesCss } from 'stylesheets/messages';
 import classnames from 'classnames';
-import { useRef } from 'react';
 
-export function MessageContent({ content, isUser }) {
+export function MessageContent({ content }) {
     return <p className={MessagesCss.messageContent}>{ content }</p>
 }
 

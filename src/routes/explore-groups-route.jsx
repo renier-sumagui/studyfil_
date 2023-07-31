@@ -4,6 +4,7 @@ import { StudyGroups } from 'features/study-groups';
 import { useUserContext } from 'context/';
 import { useDiscoverGroups, useGroupsBasedOnTopics, useMoreGroups } from 'features/study-groups';
 import { AbsoluteCircular } from 'features/loading';
+import { StudyGroupsSkeleton } from 'features/study-groups';
 
 function getGroupIds(groups) {
     const groupIds = groups.map((group) => group.id);
@@ -33,7 +34,6 @@ function ExploreGroupsRoute() {
         if (main.scrollTop + main.clientHeight !== main.scrollHeight || loading) {
             return;
         } else {
-            setLoading(true);
             /* If `loadUserBased` is true, get recommendations */
             if (loadUserBased) {
                 const userBasedGroups = await useDiscoverGroups(user.id, page);
@@ -117,7 +117,6 @@ function ExploreGroupsRoute() {
                     setPage(1);
                 }
             }
-            setLoading(false);
         }
     };
 
@@ -131,6 +130,7 @@ function ExploreGroupsRoute() {
             console.log(userBasedGroups.length);
             /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased` to false */
             if (userBasedGroups.length > 0) {
+                setLoading(false);
                 const groupIds = getGroupIds(userBasedGroups);
                 tempIds = [...tempIds, ...groupIds];
                 setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
@@ -141,6 +141,7 @@ function ExploreGroupsRoute() {
                     const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
                     if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                         const groupIds = getGroupIds(topicBasedGroups);
+                        setLoading(false);
                         tempIds = [...tempIds, ...groupIds];
                         setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
@@ -149,6 +150,7 @@ function ExploreGroupsRoute() {
                             setPage(1);
                             const groups = await useMoreGroups(user.id, tempIds, page);
                             if (groups.length > 0) {
+                                setLoading(false);
                                 const groupIds = getGroupIds(groups);
                                 setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                                 setPage(prev => prev + 1);
@@ -160,6 +162,7 @@ function ExploreGroupsRoute() {
                         setLoadTopicBased(false);
                         const groups = await useMoreGroups(user.id, tempIds, page);
                         if (groups.length > 0) {
+                            setLoading(false);
                             setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
                         } else {
@@ -171,6 +174,7 @@ function ExploreGroupsRoute() {
                 setLoadUserBased(false);
                 const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page);
                 if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
+                    setLoading(false);
                     const groupIds = getGroupIds(topicBasedGroups);
                     tempIds = [...tempIds, ...groupIds];
                     setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
@@ -180,6 +184,7 @@ function ExploreGroupsRoute() {
                         setPage(1);
                         const groups = await useMoreGroups(user.id, groupIds, page);
                         if (groups.length > 0) {
+                            setLoading(false);
                             setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                             setPage(prev => prev + 1);
                         } else {
@@ -190,6 +195,7 @@ function ExploreGroupsRoute() {
                     setLoadTopicBased(false);
                     const groups = await useMoreGroups(user.id, groupIds, page);
                     if (groups.length > 0) {
+                        setLoading(false);
                         setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         setPage(prev => prev + 1);
                     } else {
@@ -198,7 +204,6 @@ function ExploreGroupsRoute() {
                 }
             }
             setGroupIds(tempIds);
-            setLoading(false);
         })();
 
 
@@ -238,7 +243,7 @@ function ExploreGroupsRoute() {
                 setSeed={setSeed} 
                 setStudyGroups={setMoreGroups} 
             />}
-            {loading ? <AbsoluteCircular /> : !basedOnUsers && !basedOnTopics && !moreGroups ? <h3>No groups yet</h3> : null}
+            {loading ? <StudyGroupsSkeleton headerWidth={260} /> : !basedOnUsers && !basedOnTopics && !moreGroups ? <h3>No groups yet</h3> : null}
         </>
     )
 }
