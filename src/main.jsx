@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         children: [
         {
             path: '/',
-            element: <Suspense fallback={<Circular />}><ExploreGroupsRoute /></Suspense>
+            element: <Suspense><ExploreGroupsRoute /></Suspense>
         },
         {
             path: '/settings',
@@ -53,11 +53,11 @@ const router = createBrowserRouter([
         },
         {
             path: '/groups/explore',
-            element: <Suspense fallback={<Circular />}><ExploreGroupsRoute /></Suspense>
+            element: <Suspense><ExploreGroupsRoute /></Suspense>
         },
         {
             path: '/groups/joined',
-            element: <Suspense fallback={<Circular />}><JoinedGroupsRoute /></Suspense>
+            element: <Suspense><JoinedGroupsRoute /></Suspense>
         },
         {
             path: 'groups/:groupId',
