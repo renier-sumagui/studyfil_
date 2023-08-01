@@ -1,17 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/img/studyfil.ico" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StudyFil</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/img/studyfil.ico" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>StudyFil</title>
+        <style>
+            .loader {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #E3F4FE;
+            }
+
+            .loader img:nth-child(1) {
+                animation: letterAnim 3s linear infinite;
+            }
+            .loader img:nth-child(2) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 0.2s;
+            }
+            .loader img:nth-child(3) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 0.4s;
+            }
+            .loader img:nth-child(4) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 0.6s;
+            }
+            .loader img:nth-child(5) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 0.8s;
+            }
+            .loader img:nth-child(6) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 1s;
+            }
+            .loader img:nth-child(7) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 1.2s;
+            }
+            .loader img:nth-child(8) {
+                animation: letterAnim 3s linear infinite;
+                animation-delay: 1.4s;
+            }
+
+            @keyframes letterAnim {
+                10% {
+                    transform: translateY(-10px);
+                }
+                25% {
+                    transform: translateY(3px);
+                }
+                30% {
+                    transform: translateY(0px);
+                }
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <div class="loader">
+                <div>
+                    <img src="img/letters/S.png" alt="S" />
+                    <img src="img/letters/T.png" alt="T" />
+                    <img src="img/letters/U.png" alt="U" />
+                    <img src="img/letters/D.png" alt="D" />
+                    <img src="img/letters/Y.png" alt="Y" />
+                    <img src="img/letters/F.png" alt="F" />
+                    <img src="img/letters/I.png" alt="I" />
+                    <img src="img/letters/L.png" alt="L" />
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
 </html>
