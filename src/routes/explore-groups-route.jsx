@@ -101,7 +101,6 @@ function ExploreGroupsRoute() {
             setLoading(true);
             let tempIds = [];
             const userBasedGroups = await useDiscoverGroups(user.id, page.current);
-            console.log(userBasedGroups.length);
             /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased.current` to false */
             if (userBasedGroups.length > 0) {
                 setLoading(false);

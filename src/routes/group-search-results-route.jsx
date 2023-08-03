@@ -8,6 +8,7 @@ import { StudyGroupsCss } from 'stylesheets/study-groups';
 import { Circular } from 'features/loading';
 import { GroupCard } from 'features/study-groups';
 import { JoinedGroupCard } from 'features/study-groups';
+import { useNavigate } from 'react-router-dom';
 
 function SearchContainer({ heading, keyword, sortByRef, setChange, children }) {
     return (
@@ -38,20 +39,25 @@ export default function GroupSearchResultsRoute() {
     const [seed, setSeed] = useState(1);
     const sortByRef = useRef();
     const [change, setChange] = useState(1);
+    const navigate = useNavigate();
 
     const [groups, setGroups] = useState();
     const [helper, setHelper] = useState();
 
     const [searchResults, setSearchResults] = useState();
 
+    useEffect(() => {
+        if (!topic && !group) {
+            navigate('/');
+        }
+    }, [])
+
     if (!!topic && !!group) {
         // navigate back
     } else if (topic) {
         useEffect(() => {
-            console.log('topic change');
             (async function() {
                 setHelper(<Circular />)
-                console.log('NEW SORT', sortByRef.current.value);
                 const groups = await useGroups('topic', topic, userId, sortByRef.current.value);
                 setHelper();
                 if (groups.hasGroups) {

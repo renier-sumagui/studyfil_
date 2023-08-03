@@ -63,7 +63,6 @@ function ParticipantView(props) {
         } else {
             setVideoIcon(<NoPhotographyIcon className="verticalAlignBaseline" />);
         }
-        console.log(webcamOn);
     }, [webcamOn])
 
     useEffect(() => {

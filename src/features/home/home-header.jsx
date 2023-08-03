@@ -15,7 +15,11 @@ export function HomeHeader() {
     function handleSubmit(e) {
         e.preventDefault();
         const searchType = searchTypeRef.current.value;
-        navigate(`/groups/search?${searchType}=${keyword}&user=${user.id}`);
+        if (keyword) {
+            navigate(`/groups/search?${searchType}=${keyword}&user=${user.id}`);
+        } else {
+            return;
+        }
     }
 
     return (
