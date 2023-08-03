@@ -75,7 +75,7 @@ function ParticipantView(props) {
     }, [micOn])
 
     return (
-    <div style={{ width: '340px', border: '1px solid black', borderRadius: '10px', padding: '5px', height: '230px', background: ' #CDE3F9' }}>
+    <div style={{ width: '340px', border: '1px solid #2E5A88', borderRadius: '10px', padding: '5px', height: '230px', background: ' #CDE3F9' }}>
         <p style={{ textAlign: 'center' }}><strong>{displayName}</strong> | {videoIcon} | {micIcon}</p>
         <audio ref={micRef} autoPlay playsInline muted={isLocal} />
         {webcamOn && (

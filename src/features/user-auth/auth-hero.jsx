@@ -23,7 +23,7 @@ export function AuthHero() {
                 <img src="/img/friends.png" />
             </Grid>
             <Grid item xs={3}>
-                <Typography variant="h5" color="#00007D" sx={{ textAlign: "center", width: '70%', margin: '0 auto' }}>An online learning community that offers sharing and gaining knowledge on different topic.</Typography>
+                <Typography variant="h5" color="#00007D" sx={{ textAlign: "center", width: '70%', margin: '0 auto' }}>An online learning community that offers sharing and gaining knowledge on different topics.</Typography>
             </Grid>
             <Grid item xs={1}>
                 <Typography variant="p" color="#00007D" sx={{ textAlign: "center", width: '70%' }}>Recommended for users 16 years old and above.</Typography>
