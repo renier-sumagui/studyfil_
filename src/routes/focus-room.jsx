@@ -27,38 +27,56 @@ const chunk = (arr) => {
 
 function ParticipantView(props) {
     const micRef = useRef(null);
-    const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
-    useParticipant(props.participantId);
+    const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } = useParticipant(props.participantId);
+    const [videoIcon, setVideoIcon] = useState(<NoPhotographyIcon className="verticalAlignBaseline" />);
+    const [micIcon, setMicIcon] = useState(<MicOffIcon className="verticalAlignBaseline" />);
 
     const videoStream = useMemo(() => {
-    if (webcamOn && webcamStream) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(webcamStream.track);
-        return mediaStream;
-    }
+        if (webcamOn && webcamStream) {
+            const mediaStream = new MediaStream();
+            mediaStream.addTrack(webcamStream.track);
+            return mediaStream;
+        }
     }, [webcamStream, webcamOn]);
 
     useEffect(() => {
-    if (micRef.current) {
-        if (micOn && micStream) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(micStream.track);
+        if (micRef.current) {
+            if (micOn && micStream) {
+            const mediaStream = new MediaStream();
+            mediaStream.addTrack(micStream.track);
 
-        micRef.current.srcObject = mediaStream;
-        micRef.current
-            .play()
-            .catch((error) =>
-            console.error("videoElem.current.play() failed", error)
-            );
-        } else {
-            micRef.current.srcObject = null;
+            micRef.current.srcObject = mediaStream;
+            micRef.current
+                .play()
+                .catch((error) =>
+                console.error("videoElem.current.play() failed", error)
+                );
+            } else {
+                micRef.current.srcObject = null;
+            }
         }
-    }
     }, [micStream, micOn]);
 
+    useEffect(() => {
+        if (webcamOn) {
+            setVideoIcon(<CameraAltIcon className="verticalAlignBaseline" />)
+        } else {
+            setVideoIcon(<NoPhotographyIcon className="verticalAlignBaseline" />);
+        }
+        console.log(webcamOn);
+    }, [webcamOn])
+
+    useEffect(() => {
+        if (micOn) {
+            setMicIcon(<MicIcon className="verticalAlignBaseline" />);
+        } else {
+            setMicIcon(<MicOffIcon className="verticalAlignBaseline" />);
+        }
+    }, [micOn])
+
     return (
-    <div style={{ width: '340px', border: '1px solid black', borderRadius: '10px', padding: '5px' }}>
-        <p><strong>{displayName}</strong> | Webcam: {webcamOn ? "ON" : "OFF"} | Mic: {micOn ? "ON" : "OFF"}</p>
+    <div style={{ width: '340px', border: '1px solid black', borderRadius: '10px', padding: '5px', height: '230px', background: ' #CDE3F9' }}>
+        <p style={{ textAlign: 'center' }}><strong>{displayName}</strong> | {videoIcon} | {micIcon}</p>
         <audio ref={micRef} autoPlay playsInline muted={isLocal} />
         {webcamOn && (
         <ReactPlayer
@@ -69,19 +87,18 @@ function ParticipantView(props) {
             muted={true}
             playing={true}
             url={videoStream}
-            height={'200px'}
+            height={'90%'}
             width={'100%'}
             onError={(err) => {
 				console.log(err, "participant video error");
             }}
-        />
-        )}
+        />)}
     </div>
     );
 }
   
 function Controls() {
-    const { leave, toggleMic, toggleWebcam } = useMeeting();
+    const { leave, toggleMic, toggleWebcam, localWebcamOn, localMicOn } = useMeeting();
 	const [mic, setMic] = useState(true)
 	const [cam, setCam] = useState(true)
 
@@ -110,7 +127,7 @@ function Controls() {
 				}}
 				className="iconButton videoCallButtons"
 			>
-				{mic ? <MicIcon className="videoCallIcons" /> : <MicOffIcon className="videoCallIcons" />}
+				{localMicOn ? <MicIcon className="videoCallIcons" /> : <MicOffIcon className="videoCallIcons" />}
 			</button>
 			<button 
 				onClick={() => {
@@ -119,7 +136,7 @@ function Controls() {
 				}}
 				className="iconButton videoCallButtons"
 			>
-				{cam ? <CameraAltIcon className="videoCallIcons" /> : <NoPhotographyIcon className="videoCallIcons" />}
+				{localWebcamOn ? <CameraAltIcon className="videoCallIcons" /> : <NoPhotographyIcon className="videoCallIcons" />}
 			</button>
 		</div>
     );
@@ -201,8 +218,8 @@ function FocusRoom() {
         <MeetingProvider
             config={{
                 meetingId,
-                micEnabled: true,
-                webcamEnabled: true,
+                micEnabled: false,
+                webcamEnabled: false,
                 name: `${user.username}`,
             }}
             token={token}
