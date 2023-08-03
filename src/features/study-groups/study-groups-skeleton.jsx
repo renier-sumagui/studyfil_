@@ -1,7 +1,6 @@
 import Skeleton from '@mui/material/Skeleton';
 import { GroupCardCss, StudyGroupsCss } from 'stylesheets/study-groups';
 import classnames from 'classnames';
-import Typography from '@mui/material/Typography';
 
 export function GroupCardSkeleton() {
     return (

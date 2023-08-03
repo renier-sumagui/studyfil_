@@ -26,7 +26,6 @@ export function JoinedStudyGroups({ heading, groups }) {
             setLoading(false);
             if (response.data.hasGroups) {
                 const groups = response.data.groups.map((group) => {
-                    console.log(group);
                     return <JoinedGroupCard 
                                 key={group.id} 
                                 groupId={group.id} 
