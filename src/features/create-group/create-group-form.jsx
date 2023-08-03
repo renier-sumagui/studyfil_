@@ -82,6 +82,7 @@ export function CreateGroupForm({ handleClose, reload }) {
             setTopic('');
             setGroupName('');
             setMemberCount('');
+            setDescription('');
             reload();
         } else {    /* if the entered word isn't found, open the checklist to add the new topic */
             setLoading(false);

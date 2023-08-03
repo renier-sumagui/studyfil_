@@ -30,6 +30,7 @@ function ExploreGroupsRoute() {
 
 
     async function handleScroll() {
+        console.log(groupIds);
         const main = document.getElementById("main-section");
         if (main.scrollTop + main.clientHeight !== main.scrollHeight || loading) {
             return;
@@ -152,6 +153,7 @@ function ExploreGroupsRoute() {
                             if (groups.length > 0) {
                                 setLoading(false);
                                 const groupIds = getGroupIds(groups);
+                                tempIds = [...tempIds, ...groupIds];
                                 setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                                 setPage(prev => prev + 1);
                             } else {

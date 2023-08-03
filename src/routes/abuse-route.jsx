@@ -63,7 +63,7 @@ function AbuseRoute() {
                     <span>Logout your Account After Use</span> - When accessing accounts on public or shared devices, remember to log out after use to prevent unauthorized access.
                 </li>
                 <li>
-                    <span>Report Suspicious or Abusive Content</span> - If you encounter suspicious or abusive content, you may click the “Report” button if you are the creator of the group or the “Kick” button if you are a member of the group you belong to and/or report it to the website administrator/developer: <span>sfreportabuse@gmail.com</span>.
+                    <span>Report Suspicious or Abusive Content</span> - If you encounter suspicious or abusive content, you may click the “Kick” button if you are the creator of the group or the “Report” button if you are a member of the group you belong to and/or report it to the website administrator/developer: <span>sfreportabuse@gmail.com</span>.
                     <p className={TermsAndConditionsCss.paragraph}>If you are based in the <u>Philippines</u>, you may also contact the Office of Cybercrime:: Department of Justice - Republic of the Philippines:: <span>Tel: (+632) 523 8482, (+632) 523 6826</span> and/or the DOJ Action Center: <span>dojac@doj.gov.ph</span>.</p>
                 </li>
             </ol>
