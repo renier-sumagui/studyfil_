@@ -72,6 +72,7 @@ export default function GroupSearchResultsRoute() {
                                         owner={group.admin_username}
                                         memberLimit={group.member_limit}
                                         memberCount={group.member_count}
+                                        isAcademic={group.is_academic}
                                         rating={group.rating}
                                     />
                                 )
@@ -85,6 +86,7 @@ export default function GroupSearchResultsRoute() {
                                         memberLimit={group.member_limit}
                                         memberCount={group.member_count}
                                         rating={group.rating}
+                                        isAcademic={group.is_academic}
                                         setSeed={setSeed}
                                     />
                                 )
