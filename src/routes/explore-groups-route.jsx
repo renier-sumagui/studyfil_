@@ -15,9 +15,9 @@ function ExploreGroupsRoute() {
     const { user } = useUserContext();
     const [seed, setSeed] = useState(1);
 
-    const [basedOnUsers, setBasedOnUsers] = useState();
-    const [basedOnTopics, setBasedOnTopics] = useState();
-    const [moreGroups, setMoreGroups] = useState();
+    const [basedOnUsers, setBasedOnUsers] = useState([]);
+    const [basedOnTopics, setBasedOnTopics] = useState([]);
+    const [moreGroups, setMoreGroups] = useState([]);
 
     const tempMoreGroups = useRef([]);
 
@@ -103,14 +103,15 @@ function ExploreGroupsRoute() {
             const userBasedGroups = await useDiscoverGroups(user.id, page.current);
             /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased.current` to false */
             if (userBasedGroups.length > 0) {
+                console.log('USER BASED GROUPS', userBasedGroups);
                 setLoading(false);
                 const groupIds = getGroupIds(userBasedGroups);
                 tempIds = [...tempIds, ...groupIds];
                 setGroupIds(tempIds);
                 setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                page.current = page.current + 1;;
+                page.current = page.current + 1;
                 if (userBasedGroups.length < 12) {
-                    loadUserBased.current = false;(false);
+                    loadUserBased.current = false;
                     page.current = 1;
                     const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page.current);
                     if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
@@ -196,7 +197,7 @@ function ExploreGroupsRoute() {
     
     return (
         <>
-            {basedOnUsers && 
+            {basedOnUsers.length > 0 && 
             <StudyGroups 
                 heading="Study groups you might like" 
                 groups={basedOnUsers} 
@@ -204,7 +205,7 @@ function ExploreGroupsRoute() {
                 setSeed={setSeed} 
                 setStudyGroups={setBasedOnUsers}
             />}
-            {basedOnTopics && 
+            {basedOnTopics.length > 0 && 
             <StudyGroups 
                 heading="Study groups based on topics you like" 
                 groups={basedOnTopics} 
@@ -212,7 +213,7 @@ function ExploreGroupsRoute() {
                 setSeed={setSeed} 
                 setStudyGroups={setBasedOnTopics} 
             />}
-            {moreGroups && 
+            {moreGroups.length > 0 && 
             <StudyGroups 
                 heading={!basedOnUsers && !basedOnTopics ? "Study groups" : "More study groups"} 
                 groups={moreGroups} 

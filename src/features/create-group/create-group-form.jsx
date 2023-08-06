@@ -67,7 +67,6 @@ export function CreateGroupForm({ handleClose, reload }) {
 
         if (openChecklist) {
             setOpenChecklist(false);
-            const filteredTopic = await profanityFilter(groupName, words);
             await submitNewTopic(theory, facts, formal, topic);
             setLoading(false);
             return;
@@ -198,7 +197,7 @@ export function CreateGroupForm({ handleClose, reload }) {
                     Group name
                     <input type="text" required value={groupName} onChange={(e) => setGroupName(e.target.value)}  />
                 </label>
-                <label for="description">
+                <label htmlFor="description">
                     Description
                     <textarea 
                         value={description} 
@@ -215,7 +214,7 @@ export function CreateGroupForm({ handleClose, reload }) {
                     <input type="number" required value={memberCount} onChange={(e) => setMemberCount(e.target.value)} min="15" />
                 </label>
                 <div className={ classnames(StudyGroupsCss.buttonGroup, "flex justifySpaceBetween") }>
-                    <input type="submit" value="Create Group" className={StudyGroupsCss.createBtn} />
+                    <input type="submit" value={openChecklist ? 'Submit Topic' : 'Create Group'} className={StudyGroupsCss.createBtn} />
                     <button onClick={ handleClose } className={StudyGroupsCss.cancelBtn}>Cancel</button>
                 </div>
             </form>
