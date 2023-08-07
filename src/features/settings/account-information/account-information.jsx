@@ -6,25 +6,28 @@ import { useUserContext } from 'src/context';
 import { useAccountInformation } from './use-account-information.js';
 import { SuccessAlert } from 'features/alerts';
 import { submitAccountInformation } from './submit-account-information.js';
+import { AbsoluteCircular } from 'features/loading';
 
 function ConfirmModal({ modalRef, closeModal }) {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     async function handleDelete() {
-        setDisabled(true);
+        setLoading(true);
         await Axios.delete('https://studyfil-api.onrender.com/user/delete', { withCredentials: true });
+        setLoading(false);
         closeModal();
         navigate('/signin');
-        setDisabled(false);
     }
     
     return (
-        <dialog ref={modalRef}>
+        <dialog ref={modalRef} style={{ position: 'relative' }}>
+            {loading && <AbsoluteCircular />}
             <p>Are you sure to delete your account?</p>
             <div className="flex justifySpaceBetween" style={{ marginTop: '20px' }}>
-                <button className="buttonDanger" onClick={handleDelete} disabled={disabled}>Yes</button>
-                <button className="buttonSuccess" onClick={() => closeModal()} disabled={disabled}>No</button>
+                <button className="buttonDanger" onClick={handleDelete}>Yes</button>
+                <button className="buttonSuccess" onClick={() => closeModal()}>No</button>
             </div>
         </dialog>
     )
