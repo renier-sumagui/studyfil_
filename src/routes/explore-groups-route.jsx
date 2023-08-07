@@ -28,7 +28,7 @@ function ExploreGroupsRoute() {
     const [loading, setLoading] = useState(true);
 
     const page = useRef(1);
-    const [groupIds, setGroupIds] = useState([]);
+    // const [groupIds, setGroupIds] = useState([]);
 
 
     async function handleScroll() {
@@ -66,14 +66,14 @@ function ExploreGroupsRoute() {
                 }
             } else if (loadTopicBased.current) {
                 const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page.current);
-                if (topicBasedGroups.length > 0) {
-                const groupIds = getGroupIds(topicBasedGroups);
-                tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
-                setBasedOnTopics(prev => [...prev, ...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
+                    if (topicBasedGroups.length > 0) {
+                    const groupIds = getGroupIds(topicBasedGroups);
+                    tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
+                    setBasedOnTopics(prev => [...prev, ...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 } else {
-                loadTopicBased.current = false;
-                page.current = 1;
-                const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
+                    loadTopicBased.current = false;
+                    page.current = 1;
+                    const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
                 if (groups.length > 0) {
                     setMoreGroups(prev => [...prev, ...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     page.current = page.current + 1;
@@ -82,7 +82,7 @@ function ExploreGroupsRoute() {
                 }
                 }
             } else if (loadMoreGroups.current) {
-                const groups = await useMoreGroups(user.id, groupIds, page.current);
+                const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
                 if (groups.length > 0) {
                 setMoreGroups(prev => [...prev, ...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 page.current = page.current + 1;
@@ -103,11 +103,11 @@ function ExploreGroupsRoute() {
             const userBasedGroups = await useDiscoverGroups(user.id, page.current);
             /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased.current` to false */
             if (userBasedGroups.length > 0) {
-                console.log('USER BASED GROUPS', userBasedGroups);
                 setLoading(false);
                 const groupIds = getGroupIds(userBasedGroups);
-                tempIds = [...tempIds, ...groupIds];
-                setGroupIds(tempIds);
+                // tempIds = [...tempIds, ...groupIds];
+                // setGroupIds(tempIds);
+                tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
                 setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 page.current = page.current + 1;
                 if (userBasedGroups.length < 12) {
@@ -118,9 +118,9 @@ function ExploreGroupsRoute() {
                         const groupIds = getGroupIds(topicBasedGroups);
                         setLoading(false);
                         tempIds = [...tempIds, ...groupIds];
-                        setGroupIds(tempIds);
+                        tempMoreGroups.current = [...tempMoreGroups.current, ...tempIds];
                         setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                        page.current = page.current + 1;;
+                        page.current = page.current + 1;
                         if (topicBasedGroups.length < 12) {
                             loadTopicBased.current = false;(false);
                             page.current = 1;
@@ -129,9 +129,9 @@ function ExploreGroupsRoute() {
                                 setLoading(false);
                                 const groupIds = getGroupIds(groups);
                                 setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                                page.current = page.current + 1;;
+                                page.current = page.current + 1;
                             } else {
-                                loadMoreGroups.current = false;;
+                                loadMoreGroups.current = false;
                             }
                         }
                     } else { /* Else get all groups */
@@ -142,9 +142,9 @@ function ExploreGroupsRoute() {
                             const temp = [...groups.map(group => ({ ...group, key: crypto.randomUUID() }))];
                             setMoreGroups(temp);
                             tempMoreGroups.current = temp;
-                            page.current = page.current + 1;;
+                            page.current = page.current + 1;
                         } else {
-                            loadMoreGroups.current = false;;
+                            loadMoreGroups.current = false;
                         }
                     }
                 }
@@ -154,10 +154,10 @@ function ExploreGroupsRoute() {
                 if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
                     setLoading(false);
                     const groupIds = getGroupIds(topicBasedGroups);
-                    tempIds = [...tempIds, ...groupIds];
-                    setGroupIds(tempIds);
+                    // setGroupIds(tempIds);
+                    tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
                     setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                    page.current = page.current + 1;;
+                    page.current = page.current + 1;
                     if (topicBasedGroups.length < 12) {
                         loadTopicBased.current = false;(false);
                         page.current = 1;
@@ -165,20 +165,20 @@ function ExploreGroupsRoute() {
                         if (groups.length > 0) {
                             setLoading(false);
                             setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                            page.current = page.current + 1;;
+                            page.current = page.current + 1;
                         } else {
-                            loadMoreGroups.current = false;;
+                            loadMoreGroups.current = false;
                         }
                     }
                 } else { /* Else get all groups */
-                    loadTopicBased.current = false;(false);
+                    loadTopicBased.current = false;
                     const groups = await useMoreGroups(user.id, groupIds, page.current);
                     if (groups.length > 0) {
                         setLoading(false);
                         setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                        page.current = page.current + 1;;
+                        page.current = page.current + 1;
                     } else {
-                        loadMoreGroups.current = false;;
+                        loadMoreGroups.current = false;
                     }
                 }
             }
