@@ -159,9 +159,9 @@ function ExploreGroupsRoute() {
                     setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     page.current = page.current + 1;
                     if (topicBasedGroups.length < 12) {
-                        loadTopicBased.current = false;(false);
+                        loadTopicBased.current = false;
                         page.current = 1;
-                        const groups = await useMoreGroups(user.id, groupIds, page.current);
+                        const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
                         if (groups.length > 0) {
                             setLoading(false);
                             setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
@@ -172,7 +172,7 @@ function ExploreGroupsRoute() {
                     }
                 } else { /* Else get all groups */
                     loadTopicBased.current = false;
-                    const groups = await useMoreGroups(user.id, groupIds, page.current);
+                    const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
                     if (groups.length > 0) {
                         setLoading(false);
                         setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
