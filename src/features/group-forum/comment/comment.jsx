@@ -58,7 +58,7 @@ export function Comment({ commentId, username, fullName, country, content, timeP
                 </div>
             </div>
             <div style={{ marginLeft: '50px' }}>
-                <p>{content}</p>
+                <p className={GroupForumCss.commentContent}>{content}</p>
                 {replyForm ?  <ReplyForm commentId={commentId} setSeed={setSeed} groupId={groupId}/> : 
                 <UpvoteDownvote id={commentId} isComment={true}  upvotes={upvotes} downvotes={downvotes} setSeed={postSeed} setReplyForm={setReplyForm}>
                     <button 

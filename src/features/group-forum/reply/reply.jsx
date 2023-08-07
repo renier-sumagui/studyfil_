@@ -16,7 +16,7 @@ export function Reply({ replyId, username, fullName, country, content, timePoste
                 </div>
             </div>
             <div style={{ marginLeft: '50px' }}>
-                <p>{content}</p>
+                <p className={GroupForumCss.replyContent}>{content}</p>
                 <UpvoteDownvote id={replyId} isComment={false} setSeed={setSeed} upvotes={upvotes} downvotes={downvotes} />
             </div>
         </div>

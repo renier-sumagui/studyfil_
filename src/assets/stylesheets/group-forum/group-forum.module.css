@@ -168,6 +168,9 @@
 .postUserInfo > p, .timePosted {
     font-size: 15px;
 }
+.replyContent, .commentContent, .question {
+    white-space: pre-wrap;
+}
 .question {
     padding-bottom: 10px;
 }
