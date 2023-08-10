@@ -208,7 +208,7 @@ function ExploreGroupsRoute() {
             />}
             {moreGroups.length > 0 && 
             <StudyGroups 
-                heading={basedOnUsers.length < 0 && basedOnTopics.length < 0 ? "Study groups" : "More study groups"} 
+                heading={basedOnUsers.length < 1 && basedOnTopics.length < 1 ? "Study groups" : "More study groups"} 
                 groups={moreGroups} 
                 seed={seed} 
                 setSeed={setSeed} 
