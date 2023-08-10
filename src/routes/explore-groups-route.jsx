@@ -5,6 +5,7 @@ import { useUserContext } from 'context/';
 import { useDiscoverGroups, useGroupsBasedOnTopics, useMoreGroups } from 'features/study-groups';
 import { AbsoluteCircular } from 'features/loading';
 import { StudyGroupsSkeleton } from 'features/study-groups';
+import { LoaderLine } from 'features/loading';
 
 function getGroupIds(groups) {
     const groupIds = groups.map((group) => group.id);
@@ -36,6 +37,7 @@ function ExploreGroupsRoute() {
         if (main.scrollTop + main.clientHeight !== main.scrollHeight || loading) {
           return;
         } else {
+            setLoading(true);
             if (loadUserBased.current) {
                 const userBasedGroups = await useDiscoverGroups(user.id, page.current);
                 if (userBasedGroups.length > 0) {
@@ -91,6 +93,7 @@ function ExploreGroupsRoute() {
                 }
             }
         }
+        setLoading(false);
     }
       
 
@@ -190,6 +193,7 @@ function ExploreGroupsRoute() {
     
     return (
         <>
+            {loading && <LoaderLine />}
             {basedOnUsers.length > 0 && 
             <StudyGroups 
                 heading="Study groups you might like" 
