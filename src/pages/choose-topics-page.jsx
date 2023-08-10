@@ -24,15 +24,7 @@ export function ChooseTopicsPage() {
     const [topics, setTopics] = useState({});
     let [topicLabel, setTopicLabel] = useState([]);
 
-    (async function() {
-        const response = await Axios.get('https://studyfil-api.onrender.com/user/check', { withCredentials: true });
-        if (response.data.isLoggedIn) {
-            setUser(response.data.user);
-            setIsLoggedIn(true);
-        } else {
-            navigate('/signin');
-        }
-    })();
+
 
 
     async function handleNext() {
@@ -68,8 +60,17 @@ export function ChooseTopicsPage() {
 
     useEffect(() => {
         (async function() {
-            const response = await Axios.get('https://studyfil-api.onrender.com/topics/all', { withCridentials: true });
+            let response = await Axios.get('https://studyfil-api.onrender.com/user/check', { withCredentials: true });
+            if (response.data.isLoggedIn) {
+                setUser(response.data.user);
+                setIsLoggedIn(true);
+            } else {
+                navigate('/signin');
+            }
+
+            response = await Axios.get('https://studyfil-api.onrender.com/topics/all', { withCridentials: true });
             const allTopics = response.data.topics;
+            console.log(allTopics);
             const tempAllTopics = allTopics.map((topic) => {
                 return { label: topic.name, id: topic.id, name: topic.name };
             });
@@ -83,7 +84,7 @@ export function ChooseTopicsPage() {
             }
             setTopics(tempTopics);
         })();
-    }, [])
+    }, []);
 
     return (
         isLoggedIn ? page : null 

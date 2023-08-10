@@ -71,7 +71,6 @@ function ExploreGroupsRoute() {
                     tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
                     setBasedOnTopics(prev => [...prev, ...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                 } else {
-                    console.log('NO TOPICS', tempMoreGroups.current);
                     loadTopicBased.current = false;
                     page.current = 1;
                     const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
@@ -83,8 +82,7 @@ function ExploreGroupsRoute() {
                     }
                 }
             } else if (loadMoreGroups.current) {
-                // const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
-                console.log('MORE GROUPS', tempMoreGroups.current);
+                const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
                 if (groups.length > 0) {
                     setMoreGroups(prev => [...prev, ...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                     page.current = page.current + 1;
