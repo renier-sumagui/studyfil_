@@ -15,7 +15,9 @@ export function GroupCard({ groupId, groupName, topic, owner, memberLimit, membe
         setLoading(true);
         const response = await joinGroup(user.id, groupId);
         if (response.success) {
-            onJoinClick();
+            if (onJoinClick) {
+                onJoinClick()
+            };
         }
 
         setLoading(false);

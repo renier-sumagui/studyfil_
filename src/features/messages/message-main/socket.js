@@ -4,5 +4,3 @@ const URL = 'https://studyfil-api.onrender.com';
 
 
 export const socket = io(URL);
-
-console.log('Socket connection established');

@@ -12,7 +12,6 @@ async function useGroupsBasedOnTopics(userId, page) {
 }
 
 async function useMoreGroups(userId, groupIds, page) {
-    console.log(groupIds);
     const response = await Axios.post('https://studyfil-api.onrender.com/groups/more', { userId, groupIds, page}, { withCredentials: true });
     return response.data.groups;
 }

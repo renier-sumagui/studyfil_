@@ -27,8 +27,6 @@ function ExploreGroupsRoute() {
     const [lineLoad, setLineLoad] = useState(false);
 
     const page = useRef(1);
-    // const [groupIds, setGroupIds] = useState([]);
-
 
     async function handleScroll() {
         const main = document.getElementById("main-section");
