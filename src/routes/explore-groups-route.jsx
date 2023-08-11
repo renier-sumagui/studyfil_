@@ -1,9 +1,7 @@
-import { useRef, useEffect, useState, createContext } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useRef, useEffect, useState } from 'react';
 import { StudyGroups } from 'features/study-groups';
 import { useUserContext } from 'context/';
 import { useDiscoverGroups, useGroupsBasedOnTopics, useMoreGroups } from 'features/study-groups';
-import { AbsoluteCircular } from 'features/loading';
 import { StudyGroupsSkeleton } from 'features/study-groups';
 
 function getGroupIds(groups) {
@@ -26,6 +24,7 @@ function ExploreGroupsRoute() {
     const loadMoreGroups = useRef(true);
 
     const [loading, setLoading] = useState(true);
+    const [lineLoad, setLineLoad] = useState(false);
 
     const page = useRef(1);
     // const [groupIds, setGroupIds] = useState([]);
@@ -33,9 +32,10 @@ function ExploreGroupsRoute() {
 
     async function handleScroll() {
         const main = document.getElementById("main-section");
-        if (main.scrollTop + main.clientHeight !== main.scrollHeight || loading) {
-          return;
+        if (main.scrollTop + main.clientHeight !== main.scrollHeight || loading || lineLoad) {
+            return;
         } else {
+            setLineLoad(true);
             if (loadUserBased.current) {
                 const userBasedGroups = await useDiscoverGroups(user.id, page.current);
                 if (userBasedGroups.length > 0) {
@@ -90,6 +90,7 @@ function ExploreGroupsRoute() {
                     loadMoreGroups.current = false;
                 }
             }
+            setLineLoad(false);
         }
     }
       
