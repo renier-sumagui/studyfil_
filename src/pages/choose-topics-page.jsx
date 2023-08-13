@@ -70,7 +70,6 @@ export function ChooseTopicsPage() {
 
             response = await Axios.get('https://studyfil-api.onrender.com/topics/all', { withCridentials: true });
             const allTopics = response.data.topics;
-            console.log(allTopics);
             const tempAllTopics = allTopics.map((topic) => {
                 return { label: topic.name, id: topic.id, name: topic.name };
             });
