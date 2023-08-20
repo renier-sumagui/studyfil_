@@ -18,4 +18,71 @@
 .searchContainer {
     border: 1px solid black;
     background: white;
+    overflow: hidden;
+}
+.searchContainer > input {
+}
+.notificationModal {
+    position: absolute;
+    max-height: 400px;
+    overflow: auto;
+    width: 400px;
+    right: 0;
+    border: 1px solid var(--primary-color);
+    padding: 4px;
+    border-radius: 10px;
+    background: #fcfcfc;
+    box-shadow: 0 0 10px 0 rgb(194, 194, 194);
+}
+.notificationModal::-webkit-scrollbar {
+    width: 8px;
+}
+.notificationModal::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 5px;
+}
+.notificationContentContainer {
+    padding: 3px 5px 5px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 5px;
+    column-gap: 5px;
+}
+.notificationContentContainer:hover {
+    background: var(--light-gray);
+}
+.notificationContentContainer > div {
+    /* display: inline-block; */
+}
+.notificationContent {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines you want to display before ellipsis */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: normal;
+    text-overflow: ellipsis;
+}
+.notificationContent, .noNotification {
+    font-size: 14px;
+}
+.notificationTime {
+    font-size: 12px;
+}
+.noNotification {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+}
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    align-self: center;
+    background: var(--danger);
+    color: #919191;
+}
+.hidden {
+    display: none;
 }

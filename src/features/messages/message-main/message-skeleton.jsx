@@ -65,6 +65,7 @@ export function MessageSkeleton() {
             } else {
                 tempArray.push(
                     <Skeleton 
+                        key={index}
                         animation="wave" 
                         className={MessagesCss.currentUser} 
                         variant="rectangle" 

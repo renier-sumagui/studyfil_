@@ -7,6 +7,7 @@ import { profanityFilter } from 'src/utils/';
 import { getNameInitials } from 'src/utils';
 import { AbsoluteCircular } from 'features/loading';
 import { useWordsContext } from 'context/';
+import { useParams } from 'react-router-dom';
 
 export function ReplyForm({ commentId, setSeed, groupId }) {
     const { user } = useUserContext();
@@ -15,12 +16,13 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
     const [initials, setInitials] = useState();
     const [loading, setLoading] = useState(false);
     const { words } = useWordsContext();
+    const { postId } = useParams();
 
     async function handleSubmit(e) {
         e.preventDefault();
         const filteredReply = await profanityFilter(inputValue, words);
         setLoading(true);
-        await submitReply(user.id, filteredReply, commentId, groupId);
+        await submitReply(user.id, filteredReply, commentId, groupId, postId);
         setInputValue('');
         setLoading(false);
         setSeed(Math.random());
@@ -33,6 +35,7 @@ export function ReplyForm({ commentId, setSeed, groupId }) {
 
     useEffect(() => {
         setInitials(getNameInitials(user.first_name + ' ' + user.last_name));
+        console.log('POST ID');
     }, [])
 
     return (

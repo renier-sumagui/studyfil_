@@ -2,7 +2,7 @@ import { GroupForumCss } from 'stylesheets/group-forum';
 import { useEffect, useState, useRef } from 'react';
 import { submitComment } from './submit-comment.js';
 import { useUserContext } from 'context/';
-import { profanityFilter,getNameInitials } from 'src/utils/';
+import { profanityFilter, getNameInitials } from 'src/utils/';
 import { AbsoluteCircular } from 'features/loading';
 import { useWordsContext } from 'context/';
 
@@ -20,6 +20,7 @@ export function CommentForm({ postId, setSeed, groupId }) {
         const filteredComment = await profanityFilter(comment, words);
         setLoading(true);
         await submitComment(user.id, postId, filteredComment, groupId);
+
         setComment('');
         setLoading(false);
         setComment('');

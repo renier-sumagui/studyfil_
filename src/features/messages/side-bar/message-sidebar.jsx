@@ -15,7 +15,6 @@ export function MessageSidebar() {
         const axiosRequest = Axios.CancelToken.source();
         (async function() {
             const response = await Axios.post('https://studyfil-api.onrender.com/messages/latest', { userId: user.id }, { withCredentials: true });
-            console.log(response);
             setLoading(false);
             if (response.data.hasGroups) {
                 setGroups(response.data.groups.map((group) => {

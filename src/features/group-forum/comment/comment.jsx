@@ -6,12 +6,14 @@ import { ReplyForm } from 'features/group-forum';
 import { Reply } from 'features/group-forum';
 import { useReplies } from './use-replies.js';
 import { getNameInitials } from 'src/utils/';
+import { useParams } from 'react-router-dom';
 
 export function Comment({ commentId, username, fullName, country, content, timePosted, upvotes, downvotes, postSeed, groupId }) {
     const [replyForm, setReplyForm] = useState(false);
     const [seed, setSeed] = useState(1);
     const [replies, setReplies] = useState();
     const initials = getNameInitials(fullName);
+    const { postId } = useParams();
 
     const replyBtn = (
         <button 
@@ -59,7 +61,7 @@ export function Comment({ commentId, username, fullName, country, content, timeP
             </div>
             <div style={{ marginLeft: '50px' }}>
                 <p className={GroupForumCss.commentContent}>{content}</p>
-                {replyForm ?  <ReplyForm commentId={commentId} setSeed={setSeed} groupId={groupId}/> : 
+                {replyForm ?  <ReplyForm commentId={commentId} setSeed={setSeed} groupId={groupId} /> : 
                 <UpvoteDownvote id={commentId} isComment={true}  upvotes={upvotes} downvotes={downvotes} setSeed={postSeed} setReplyForm={setReplyForm}>
                     <button 
                         onClick={(e) => { 

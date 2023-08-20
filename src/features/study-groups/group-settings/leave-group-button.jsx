@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { GroupForumCss } from "stylesheets/group-forum";
 import { useUserContext } from 'context/';
+import { getCurrentDatetime } from 'src/utils';
 
 function ConfirmLeaveModal({ modalRef, closeModal, groupId, userId }) {
     const navigate = useNavigate();
@@ -11,6 +12,13 @@ function ConfirmLeaveModal({ modalRef, closeModal, groupId, userId }) {
     async function handleLeave() {
         setDisabled(true);
         await Axios.post('https://studyfil-api.onrender.com/groups/leave', { userId, groupId }, { withCredentials: true });
+        Axios.post('https://studyfil-api.onrender.com/user/notification/add', { 
+            userWhoNotified: userId,
+            referenceId: groupId,
+            eventId: 5,
+            groupId: groupId,
+            datetime: getCurrentDatetime()
+        }, { withCredentials: true });
         navigate('/groups/joined');
         setDisabled(false);
     }

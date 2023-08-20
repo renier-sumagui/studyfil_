@@ -50,6 +50,16 @@ function ExploreGroupsRoute() {
                         tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
                         setBasedOnTopics(prev => [...prev, ...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
                         page.current = page.current + 1;
+                        if (topicBasedGroups.length < 12) {
+                            page.current = 1;
+                            const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
+                            if (groups.length > 0) {
+                                setMoreGroups(prev => [...prev, ...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
+                                page.current = page.current + 1;
+                            } else {
+                                loadMoreGroups.current = false;
+                            }
+                        }
                     } else {
                         loadTopicBased.current = false;
                         const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);

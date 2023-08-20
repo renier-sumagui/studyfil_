@@ -7,6 +7,7 @@
     overflow: auto;
     padding: 10px;
     position: relative;
+    background: #fcfcfc;
 }
 .mainSection::-webkit-scrollbar {
     background: none;
