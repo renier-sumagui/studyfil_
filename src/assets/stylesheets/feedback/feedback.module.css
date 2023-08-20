@@ -25,6 +25,7 @@
     height: 90%;
     resize: none;
     outline: none;
+    background: #FCFCFC;
 }
 .feedbackForm > input[type="submit"] {
     color: var(--blue);
