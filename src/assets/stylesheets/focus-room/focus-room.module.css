@@ -1,0 +1,26 @@
+@import 'stylesheets/colors.css';
+
+.createMeetingContainer {
+    padding: 20px 40px;
+    border-radius: 20px;
+    background: #CDE3F9;
+    display: flex;
+    gap: 10px;
+    box-shadow: 0 0 5px 0 var(--dark-gray);
+}
+.createMeetingContainer input, .meetingButton {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px !important;
+    border: none;
+}
+.createMeetingContainer input {
+    border: 1px solid black;
+}
+.meetingButton {
+    background: var(--blue);
+    color: white;
+}
+.meetingButton:hover {
+    background: var(--light-blue);
+}

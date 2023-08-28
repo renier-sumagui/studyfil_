@@ -16,6 +16,7 @@ import MicOffIcon from '@mui/icons-material/MicOff';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import { useUserContext } from 'context/';
+import { FocusRoomCss } from 'stylesheets/focus-room';
 
 const chunk = (arr) => {
     const newArr = [];
@@ -174,7 +175,7 @@ function MeetingView(props) {
         ) : joined && joined == "JOINING" ? (
         	<p>Joining the meeting...</p>
         ) : (
-        	<button onClick={joinMeeting}>Join</button>
+        	<button onClick={joinMeeting} className={FocusRoomCss.meetingButton}>Join</button>
         )}
       </div>
     );
@@ -185,10 +186,10 @@ function MeetingView(props) {
 function JoinScreen({ updateMeetingId, getMeetingAndToken }) {
     return (
         <div className="flex alignCenter justifyCenter" style={{ height: '100%' }}>
-            <div>
-                <input type="text" placeholder="Enter MeetingId" onChange={(e) => updateMeetingId(e.target.value)} />
-                <button onClick={getMeetingAndToken}>Join</button>
-                <button onClick={getMeetingAndToken}>Create Meeting</button>
+            <div className={FocusRoomCss.createMeetingContainer}>
+                <input type="text" placeholder="Enter Meeting ID" onChange={(e) => updateMeetingId(e.target.value)} />
+                <button onClick={getMeetingAndToken} className={FocusRoomCss.meetingButton}>Join</button>
+                <button onClick={getMeetingAndToken} className={FocusRoomCss.meetingButton}>Create Meeting</button>
             </div>
         </div>
     )
