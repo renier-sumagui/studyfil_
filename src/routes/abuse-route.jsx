@@ -88,7 +88,7 @@ function AbuseRoute() {
                     <span>Don't Engage in Cyberbullying or Hate Speech</span> - Treat others with respect when interacting on websites, forums, or social media platforms.
                 </li>
             </ol>
-            <p className="indent">By following these do's and don'ts, you can protect your online privacy, security, and personal information while accessing StudyFil. It's essential to be vigilant and informed about potential threats in the ever-evolving digital landscape.</p>
+            <p className="indent">By following these dos and don'ts, you can protect your online privacy, security, and personal information while accessing StudyFil. It's essential to be vigilant and informed about potential threats in the ever-evolving digital landscape.</p>
         </div>
     )
 }
