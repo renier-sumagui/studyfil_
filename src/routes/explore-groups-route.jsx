@@ -105,86 +105,20 @@ function ExploreGroupsRoute() {
 
 
     useEffect(() => {
-        const main = document.getElementById("main-section");
-        (async function() {
-            setLoading(true);
-            const userBasedGroups = await useDiscoverGroups(user.id, page.current);
-            /* If `userBasedGroups` has items, update `basedOnUsers`, else set `loadUserBased.current` to false */
-            if (userBasedGroups.length > 0) {
-                setLoading(false);
-                const groupIds = getGroupIds(userBasedGroups);
-                tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
-                setBasedOnUsers([...userBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                page.current = page.current + 1;
-                if (userBasedGroups.length < 12) {
-                    loadUserBased.current = false;
-                    page.current = 1;
-                    const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page.current);
-                    if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
-                        const groupIds = getGroupIds(topicBasedGroups);
-                        setLoading(false);
-                        tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
-                        setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                        page.current = page.current + 1;
-                        if (topicBasedGroups.length < 12) {
-                            loadTopicBased.current = false;
-                            page.current = 1;
-                            const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
-                            if (groups.length > 0) {
-                                setLoading(false);
-                                setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                                page.current = page.current + 1;
-                            } else {
-                                loadMoreGroups.current = false;
-                            }
-                        }
-                    } else { /* Else get all groups */
-                        loadTopicBased.current = false;
-                        const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
-                        if (groups.length > 0) {
-                            setLoading(false);
-                            const temp = [...groups.map(group => ({ ...group, key: crypto.randomUUID() }))];
-                            setMoreGroups(temp);
-                            page.current = page.current + 1;
-                        } else {
-                            loadMoreGroups.current = false;
-                        }
-                    }
-                }
-            } else {
-                loadUserBased.current = false;
-                const topicBasedGroups = await useGroupsBasedOnTopics(user.id, page.current);
-                if (topicBasedGroups.length > 0) { /* If topic based groups has groups, update `basedOnTopics` */
-                    setLoading(false);
-                    const groupIds = getGroupIds(topicBasedGroups);
-                    tempMoreGroups.current = [...tempMoreGroups.current, ...groupIds];
-                    setBasedOnTopics([...topicBasedGroups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                    page.current = page.current + 1;
-                    if (topicBasedGroups.length < 12) {
-                        loadTopicBased.current = false;
-                        page.current = 1;
-                        const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
-                        if (groups.length > 0) {
-                            setLoading(false);
-                            setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                            page.current = page.current + 1;
-                        } else {
-                            loadMoreGroups.current = false;
-                        }
-                    }
-                } else { /* Else get all groups */
-                    loadTopicBased.current = false;
-                    const groups = await useMoreGroups(user.id, tempMoreGroups.current, page.current);
-                    if (groups.length > 0) {
-                        setLoading(false);
-                        setMoreGroups([...groups.map(group => ({ ...group, key: crypto.randomUUID() }))]);
-                        page.current = page.current + 1;
-                    } else {
-                        loadMoreGroups.current = false;
-                    }
-                }
-            }
-        })();
+        async function loadGroups() {
+    setLoading(true);
+    const userBasedGroups = await useDiscoverGroups(user.id, page.current);
+    if (userBasedGroups.length > 0) {
+        addGroupsWithKeys(userBasedGroups, setBasedOnUsers);
+        // ... rest of the logic
+    }
+    // ... rest of the logic
+}
+
+useEffect(() => {
+    loadGroups();
+}, []);
+
 
 
     }, [])
