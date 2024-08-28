@@ -12,6 +12,8 @@ export function Root() {
     const [isLoggedIn, setIsLoggedIn] = useState();
     const [user, setUser] = useState();
 
+    console.log("Welcome to StudyFil");
+
     useEffect(() => {
         (async function() {
             const response = await Axios.get('https://studyfil-api.onrender.com/user/check', { withCredentials: true });
