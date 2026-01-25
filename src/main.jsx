@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/signup',
-        element: <Suspense fallback={<Circular />}><SignUpPage /></Suspense>
+        element: <Suspense fallback={<Circular />}><SignInPage /></Suspense>
     },
     {
         path: '/signup/topics',
@@ -109,7 +109,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/signin',
-        element: <Suspense fallback={<Circular />}><SignInPage /></Suspense>
+        element: <Suspense fallback={<Circular />}><SignUpPage /></Suspense>
     },
     {
         path: 'legal/terms',
